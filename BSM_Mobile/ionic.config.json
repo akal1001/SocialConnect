@@ -1,5 +1,7 @@
 {
   "name": "BSM_Mobile",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

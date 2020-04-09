@@ -5,5 +5,78 @@
 </ion-header>
 
 <ion-content>
-
+  <form #loginForm="ngForm">
+  
+    <div id="loginPaner">    
+      <div class="panel-body">
+        <div class="form-group">
+          <label>
+            <h5>USERNAME</h5>
+          </label>
+  
+          <input id="txtUsername" name="username" [(ngModel)]="username" type="text" class="form-control"
+            placeholder="username...">
+        </div>
+        <div class="form-group">
+          <label>
+            <h5>PASSWORD</h5>
+          </label>
+          <input id="txtPassword" name="userpassword" [(ngModel)]="userpassword" class="form-control" type="password" placeholder="password...">
+        </div>
+        <div class="form-group">
+          <label>
+            <h6>
+              <a>
+                Forgot Password?
+              </a></h6>
+          </label>
+  
+        </div>
+        <div>
+  
+  
+          <!-- <button (click)="getValueFromLocalStoragte()" class="btn btn-success">get key</button> -->
+          <button (click)="userLogin(loginForm)" class="btn btn-success">Login</button>
+  
+        </div>
+      </div>
+  
+    </div>
+    <div style="text-align: center;">
+        <h4 id="signResult">
+            
+        </h4>
+     
+        </div>
+   
+  
+  </form>
+  
+  
+  
+  
+  
+  <style>
+    input {
+      height: 50px;
+      -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    }
+  
+    .panel-header {
+      text-align: center;
+  
+    }
+  
+    .panel-header h3 {
+      margin-top: 30px;
+    }
+  
+    #loginPaner {
+      border: none;
+  
+  
+    }
+  </style>
 </ion-content>

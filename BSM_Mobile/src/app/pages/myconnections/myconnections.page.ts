@@ -1,37 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser } from 'src/app/interfaces/iuser';
 import { AccountService } from 'src/app/services/account.service';
-import { Router } from '@angular/router';
 import { PeopleService } from 'src/app/services/people.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-people',
-  templateUrl: './people.page.html',
-  styleUrls: ['./people.page.scss'],
+  selector: 'app-myconnections',
+  templateUrl: './myconnections.page.html',
+  styleUrls: ['./myconnections.page.scss'],
 })
-export class PeoplePage {
+export class MyconnectionsPage implements OnInit {
 
   public users:IUser;
-  constructor(private _account:AccountService, private _connection:PeopleService, private _router:Router) { }
+  constructor(private _AccountService: AccountService,  private _connection:PeopleService, private _router:Router) { }
 
-  ionViewWillEnter() 
-  
+  ngOnInit()  
   {
-    if(window.localStorage.getItem("_user1")!= undefined)
-    {
-      this.getAllUser();
-    }
-    else{
-      this._router.navigate(['account']);
-    }
+    this.IsUserAutenicated();    
   }
 
-   getAllUser()
+  IsUserAutenicated() {
+    this._AccountService.IsUserAuthenticatedService(window.localStorage.getItem("_user1")).subscribe((resposne) => {
+      if (resposne == true) {
+
+        this.GetAllMyConnection();
+      }
+      else {
+
+        this._router.navigate(['account']);
+       
+
+      }
+    })
+
+  }
+  
+
+
+  GetAllMyConnection()
    {
-    return  this._account.ReturnAllUsers(window.localStorage.getItem("_user1")).subscribe((data)=>{
+    return  this._connection.GetMyConnection(window.localStorage.getItem("_user1")).subscribe((data)=>{
       this.users  = data;
       this.runspiner();
-     })
+     });
    }
  
  
@@ -55,11 +66,6 @@ export class PeoplePage {
     },
     error => alert(error))
    // alert(id);
-  }
-
-  thisUserInfo(id: string) {
-    window.localStorage.setItem("_user2", id);
-    this._router.navigate(['/publicpro']);
   }
 
 }

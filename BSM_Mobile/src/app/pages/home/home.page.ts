@@ -6,13 +6,14 @@ import { Router } from '@angular/router';
 import { ContentPostService } from 'src/app/services/content-post.service';
 import { IContentPost } from 'src/app/interfaces/icontent-post';
 import { NgForm } from '@angular/forms';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage  implements OnInit{
 
   contentPostId?: any;
   posterReferanceId?: any;
@@ -36,24 +37,39 @@ export class HomePage implements OnInit {
 
   public texts: any;
   public tesId;
-//https://youtu.be/6wD4V0rvlDI
-//https://youtu.be/6wD4V0rvlDI
+
+
   public vid = "dQw4w9WgXcQ";
   public sharedVedio: any = 'https://www.youtube.com/embed/M7Zc1jHf-00';
 
 
-  constructor(private _contentPost: ContentPostService, private _dataService: DataService, private _AccountService: AccountService, private _router: Router) { }
+  constructor( public loadingController: LoadingController,private _contentPost: ContentPostService, private _dataService: DataService, private _AccountService: AccountService, private _router: Router) { }
   ngOnInit() {
+    
+  
+    this.presentLoading();
+    this.ReturnContentPost();
 
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    document.body.appendChild(tag);
+  }
 
+  doRefresh(event) {
+    
+    console.log('Begin async operation');
+     this.ReturnContentPost();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
 
-    this.IsUserAutenicated();
-
-
-
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
   }
 
 
@@ -98,7 +114,7 @@ export class HomePage implements OnInit {
         this._profileImage_1 = window.localStorage.getItem("_pI1");
 
         this.ReturnContentPost();
-
+        this._router.navigateByUrl('/login');
 
 
       }
@@ -126,16 +142,20 @@ export class HomePage implements OnInit {
     });
   }
   ReturnContentPost() {
-
+    
+   
 
     return this._contentPost.ReturnAllContentService().subscribe((data) => {
-      for (var i in data) {
+      for (var i in data) 
+      {
+        
+       
         this.GetUserInfoB(data[i].posterReferanceId);
         data[i]._posterProfileImageUrl = this.imgUser;
         data[i]._conmentLenght = data[i]._comments.length;
         this.contentList2.push(data[i]);
       }
-      this.runspiner();
+     
       this.contentList2 = data;
 
     },
@@ -302,4 +322,18 @@ export class HomePage implements OnInit {
   
   }
 
+  OnComment(id: string)
+  {
+       window.localStorage.setItem("_contentId",id)
+       console.log(id);
+      //this._router.navigateByUrl("/tabs/comments")
+  }
+  OnUserImage(id)
+  {
+    console.log(id);
+     window.localStorage.setItem("_user2", id);
+    
+  }
+
+  
 }

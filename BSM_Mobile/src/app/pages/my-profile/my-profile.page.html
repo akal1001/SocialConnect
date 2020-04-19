@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>myProfile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size-md="6" size-sm="12">
+                <img class="imageClass" title="Profile Image" [src]=imageUrl>
+            </ion-col>
+           
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <input type="file" id="upload_photo" #Image accept="image/*" (change)="handleFileInput($event)" style="display: inline-block;">
+
+                <button (click)="OnSubmit()" style="display: inline-block;" class="btn btn-success btn-submit">Save</button>
+            
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+              <h4>
+                  smaple name sat
+              </h4>
+            </ion-col>
+            
+            
+        </ion-row>
+        <ion-row>
+            <ion-col>
+              about 
+            </ion-col>
+            <ion-col>
+                actitivey 
+              </ion-col>
+              <ion-col>
+                prof 
+              </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

@@ -5,7 +5,7 @@
       <ion-content>
         <ion-list lines="none">
           <ion-list-header>
-            Conference
+           BSM
           </ion-list-header>
      
         </ion-list>
@@ -14,30 +14,64 @@
           <ion-list-header>
             Account
           </ion-list-header>
-
           <ion-menu-toggle autoHide="false">
-            <ion-item routerLink="/account" routerLinkActive="active" routerDirection="root" detail="false">
+            
+            <ion-item routerLink="/my-profile/{{userid}}">
               <ion-icon slot="start" name="person"></ion-icon>
               <ion-label>
-                Account
+                my profile
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="tabs/home" routerLinkActive="active" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="home"></ion-icon>
+              <ion-label>
+                home
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/myconnections" routerLinkActive="active" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="person"></ion-icon>
+              <ion-label>
+                myconnections
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
 
           <ion-menu-toggle autoHide="false">
-            <ion-item routerLink="/support" routerLinkActive="active" routerDirection="root" detail="false">
+            <ion-item routerLink="/connectionrequester" routerLinkActive="active" routerDirection="root" detail="false">
               <ion-icon slot="start" name="help"></ion-icon>
               <ion-label>
-                Support
+                connection requester
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/connectionsender" routerLinkActive="active" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="help"></ion-icon>
+              <ion-label>
+                connection sender 
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
 
           <ion-menu-toggle autoHide="false">
-            <ion-item button  detail="false">
-              <ion-icon slot="start" name="log-out"></ion-icon>
+            <ion-item routerLink="/contacts" button  detail="false">
+              <ion-icon slot="start" name="contact"></ion-icon>
               <ion-label>
-                Logout
+                contacts
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/messaging" routerLinkActive="active" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="help"></ion-icon>
+              <ion-label>
+                messaging
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
@@ -58,14 +92,7 @@
             </ion-item>
           </ion-menu-toggle>
 
-          <ion-menu-toggle autoHide="false">
-            <ion-item routerLink="/support" routerLinkActive="active" routerDirection="root" detail="false">
-              <ion-icon slot="start" name="help"></ion-icon>
-              <ion-label>
-                Support
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+         
 
           <ion-menu-toggle autoHide="false">
             <ion-item routerLink="/signup" routerLinkActive="active" routerDirection="root" detail="false">
@@ -76,26 +103,10 @@
             </ion-item>
           </ion-menu-toggle>
 
-          <ion-item>
-            <ion-icon slot="start" name="moon-outline"></ion-icon>
-            <ion-label>
-              Dark Mode
-            </ion-label>
-            <ion-toggle></ion-toggle>
-          </ion-item>
+       
         </ion-list>
 
-        <ion-list lines="none">
-          <ion-list-header>
-            Tutorial
-          </ion-list-header>
-          <ion-menu-toggle autoHide="false">
-            <ion-item button  detail="false">
-              <ion-icon slot="start" name="hammer"></ion-icon>
-              <ion-label>Show Tutorial</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
+       
       </ion-content>
     </ion-menu>
 

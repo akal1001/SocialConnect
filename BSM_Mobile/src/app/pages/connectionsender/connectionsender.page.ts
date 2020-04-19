@@ -1,37 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser } from 'src/app/interfaces/iuser';
 import { AccountService } from 'src/app/services/account.service';
-import { Router } from '@angular/router';
 import { PeopleService } from 'src/app/services/people.service';
 
 @Component({
-  selector: 'app-people',
-  templateUrl: './people.page.html',
-  styleUrls: ['./people.page.scss'],
+  selector: 'app-connectionsender',
+  templateUrl: './connectionsender.page.html',
+  styleUrls: ['./connectionsender.page.scss'],
 })
-export class PeoplePage {
+export class ConnectionsenderPage implements OnInit {
 
   public users:IUser;
-  constructor(private _account:AccountService, private _connection:PeopleService, private _router:Router) { }
+  constructor(private _account:AccountService, private _connection:PeopleService) { }
 
-  ionViewWillEnter() 
+  ngOnInit() 
   
   {
-    if(window.localStorage.getItem("_user1")!= undefined)
-    {
-      this.getAllUser();
-    }
-    else{
-      this._router.navigate(['account']);
-    }
+    
+    this.GetAllMyConnection();
   }
-
-   getAllUser()
+ public conn_component_message:string;
+  GetAllMyConnection()
    {
-    return  this._account.ReturnAllUsers(window.localStorage.getItem("_user1")).subscribe((data)=>{
+    return  this._connection.GetMyConnectionSend(window.localStorage.getItem("_user1")).subscribe((data)=>{
+     
+     this.conn_component_message = "con req sent by you"
       this.users  = data;
       this.runspiner();
-     })
+      
+     });
    }
  
  
@@ -57,9 +54,23 @@ export class PeoplePage {
    // alert(id);
   }
 
-  thisUserInfo(id: string) {
-    window.localStorage.setItem("_user2", id);
-    this._router.navigate(['/publicpro']);
+  
+  DropThisConnectRequestISend(id:string)
+  {
+   
+    var element = document.getElementById(id + 20);
+
+  
+
+    this._connection.DeleteThisConnectionService(localStorage.getItem("_user1"),id).subscribe(resposne=>
+    {
+       if(resposne == true)
+       {
+        element.remove();
+       }
+    },
+    error => alert(error))
   }
+
 
 }

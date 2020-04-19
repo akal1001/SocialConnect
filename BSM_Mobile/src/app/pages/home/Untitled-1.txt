@@ -1,0 +1,46 @@
+
+text
+
+
+
+<!-- <ul id="conntentfooter" style="height:40px; padding: 0%; padding-bottom: 0%;  margin: 0%; margin-bottom: 0%;display: flex;
+align-items: center;">
+
+    <li id="{{content. contentPostId}}" (click)="likeThisContent(content.contentPostId)">
+
+       
+        <div class="myd" style="width: 60px">
+            <p style=" color: gray;  width:100%; float: left; text-align: left; height: 100%; padding:0%; font-weight:500; text-transform: capitalize; margin: 0%;"
+                id="{{content. contentPostId+20}}">{{content. _countContentLikes}}
+                likes</p>
+        </div>
+
+
+
+    </li>
+
+    <li>
+        <a class="btn" data-toggle="collapse" href="#{{content.contentPostId + 1}}" role="button"
+            aria-expanded="false" aria-controls="collapseExample"
+            style="color:gray;  font-weight:500; float: center; text-transform: capitalize; height:100%; width: 100%;padding: 1%;">
+            {{content._conmentLenght}} comments +
+        </a>
+        <p style="  float: left; width:76%; height: 100%; padding-top: 2%; text-align: left;">
+               
+        </p> -->
+    <!-- </li>
+    <li> -->
+        <!-- <a class="btn"
+            style="color:gray; font-weight:500; float: right;text-transform: capitalize; text-align: center; height:100%; width: 100%;padding: 1%;"
+            id={{content.posterReferanceId}} #posterRefId (click)="followThisContentPoster(posterRefId.id)"
+            role="button">
+
+            follow
+
+
+        </a>
+
+
+    </li> -->
+
+<!-- </ul> -->

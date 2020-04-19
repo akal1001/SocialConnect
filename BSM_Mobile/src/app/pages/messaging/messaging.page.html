@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaultHref="/contact"></ion-back-button>
+    </ion-buttons>
+    <ion-title>messaging</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-item>
+   
+    <!-- {{this.contactId+ "  "}} -->
+    <img class="contactProfileImage" [src]="this.contatImage"> 
+    <ion-label>
+      {{this.contactName}}
+    </ion-label> 
+  </ion-item>
+</ion-list>
+ {{messages}}
+  
+</ion-content>
+<ion-list>
+  <ion-item>
+    <ion-tab-button>
+      <ion-icon size="small" name="camera"></ion-icon>
+      <ion-label>picture</ion-label>
+    </ion-tab-button>
+
+
+    <ion-item style="width: 70%;">
+      <!-- <ion-input type="text" placeholder="text..."></ion-input> -->
+      <ion-textarea #messsageText placeholder="Enter more information here..." style="border: 1px solid lightgray;"></ion-textarea>
+     </ion-item>
+    
+     <ion-tab-button (click)="OnSend(messsageText)">
+      <ion-icon size="small" name="send"></ion-icon>
+      <ion-label>ssend</ion-label>
+    </ion-tab-button>
+  </ion-item>
+ 
+
+</ion-list>

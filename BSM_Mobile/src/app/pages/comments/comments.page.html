@@ -1,0 +1,200 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="tabs/home"></ion-back-button>
+        </ion-buttons>
+        <ion-title>comments</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="2">
+
+                <img class="profileImage" [src]="singleContent?._ContentImageURLs">
+
+            </ion-col>
+            <ion-col size="10">
+                <ion-label>
+                    {{"name name"}} <br>
+                    {{singleContent?._countContentPosterFollowrs}}
+                </ion-label>
+            </ion-col>
+            <ion-col size="12" size-md="6">
+                <img class="profileContent" [src]="singleContent?._ContentImageURLs">
+            </ion-col>
+            <br>
+            <br>
+            <ion-row>
+                <ion-col size="2">
+                    <img class="profileImage" [src]="singleContent?._ContentImageURLs">
+                </ion-col>
+                <ion-col size="10">
+                    <p>
+                        ative: tried calling StatusBar.styleDefault,
+                        but Cordova is not
+                        available. Make sure to include cordova.js or run in a device/simulato
+                    </p>
+                   
+                </ion-col>
+                <ion-col size="2">
+                    <img class="profileImage" [src]="singleContent?._ContentImageURLs">
+                </ion-col>
+                <ion-col size="10">
+                    <p>
+                        ative: tried calling StatusBar.styleDefault,
+                        but Cordova is not
+                        available. Make sure to include cordova.js or run in a device/simulato
+                    </p>
+                    <ion-col size="2">
+                        <img class="profileImage" [src]="singleContent?._ContentImageURLs">
+                    </ion-col>
+                    <ion-col size="10">
+                        <p>
+                            ative: tried calling StatusBar.styleDefault,
+                            but Cordova is not
+                            available. Make sure to include cordova.js or run in a device/simulato
+                        </p>
+                    </ion-col>
+                </ion-col>
+            </ion-row>
+           
+                
+            </ion-row>
+    </ion-grid>
+
+
+
+
+    <!-- <div style="background-color: #f2f5fc; margin-top: 0%;" class="" id="{{content.contentPostId + 1}}"
+  style="border-top: 1px solid white; ">
+  <div style=" width: 100%; padding:0%; border-bottom: 1px solid lightgray;" id="{{content.contentPostId+2}}">
+      <ul id="commnerList" *ngFor="let comment of content._comments"
+          style="width: 100%; padding: 2%; margin:0%;background-color:#f8fafd;  padding-top: 0%; padding-bottom: 0%; padding-top: 1%;padding-bottom: 1%; padding-left: 1%;">
+          <li id="imgli"
+              style=" width: 15%; max-height:50px;  vertical-align: top; padding: 1; padding-top: 4%; text-align: center; display: inline-block; background-color: #f8fafd;">
+
+
+
+              <button id="{{content.posterReferanceId}}" color="" mat-button #ids
+                  (click)="thisUserInfo(comment._user.userId)" style="padding: 0%;">
+                  <img src='{{comment._user.profileImageURL}}'
+                      style="width:45px;height: 45px;border-radius: 50%; margin: 0%; " mat-button>
+              </button>
+
+            
+
+          </li>
+          <li
+              style="width: 83%; padding: 1%;  display: inline-block;  margin: 0%;background-color:#f8fafd;padding-top:1%; padding-bottom:1%;">
+              <small style="font-weight: lighter;text-transform: capitalize;">
+
+                  {{comment._user.userName}} | {{comment._DateTime}}
+              </small>
+              <p style="word-wrap: break-word; vertical-align: 0%; width: 100%; margin:1%; margin-left: 0%; ">
+                  {{comment._Comment}}
+
+
+
+
+              </p>
+              <div style="padding: 0%;margin: 0%;">
+                  <a class="btn" data-toggle="collapse" href="#{{comment.commentId}}" role="button"
+                      aria-expanded="false" aria-controls="collapseExample"
+                      style="margin: 0%;padding: 0%; margin: 0%; text-transform: lowercase;">
+                      view replay
+                  </a>
+
+              </div>
+              <div class="collapse" id="{{comment.commentId}}" style="padding: 0%;">
+
+                  <ul id="repliList" *ngFor="let replay of comment._replay">
+                      <li style="width: 10%; vertical-align: top;">
+                          <img src="{{replay._user.profileImageURL}}"
+                              style="width: 30px; height:30px; border-radius: 50%; vertical-align: top;">
+
+                 
+
+                      </li>
+                      <li style="width: 90%; padding: 1%;">
+                          <p style="word-wrap: break-word; vertical-align: 0%; width: 100%; padding: 1%;">
+                              {{replay.replayContent}}
+                          </p>
+                      </li>
+
+                  </ul>
+
+                  <ul>
+                      <li>
+                    
+                          <input type="text" #replayText>
+
+                          <button id="{{comment.commentId}}" type="click" #replayId
+                              (click)="ReplayToTheComment(replayId.id, replayText.value)"
+                              class="float-left submit-button">Replay</button>
+
+                      </li>
+                  </ul>
+              </div>
+
+
+          </li>
+          <hr style="margin: 0">
+
+      </ul>
+
+  </div>
+  <div style="background-color: white">
+      <form #commentForm="ngForm" style="margin: 1%;">
+
+          <ul id="commnentUl" style="width: 100%; margin: 0%; padding: 0%;background-color:white">
+
+              <li
+                  style=" width: 15%; max-height:50px;  vertical-align: top; text-align: center; display: inline-block;">
+                  <img src='{{_profileImage_1}}'
+                      style="width:45px;height: 45px;border-radius: 50%; vertical-align: top; margin: 0%; ">
+              </li>
+              <li style="width: 70%;">
+                  <textarea class="commentInputs" name="comment" [(ngModel)]="comment"
+                      id="{{content. contentPostId}}" placeholder='leave a comment...' vaue="sss"
+                      style="width: 100%; min-height: 50px; padding: 3%; padding-bottom: 0; border-radius: 2%;  border: 1px solid lightgray; background-color: #f8fafd; "></textarea>
+
+              </li>
+              <li style="width: 10%; vertical-align: top; ;">
+                  <button class="commentInputs" (click)="leaveComment(commentForm, myId.id,myId.value)" #myId
+                      value="{{content. contentPostId+2}}" id="{{content. contentPostId}}" class=""
+                      style="height: 50px; width: 50px; background-color: #f8fafd; border: 1px solid lightgray; border-radius: 50%;">post</button>
+
+              </li>
+          </ul>
+
+      </form>
+  </div>
+
+</div> -->
+
+
+
+</ion-content>
+<ion-list>
+    <ion-item>
+      
+  
+  
+      <ion-item style="width: 90%;">
+        <!-- <ion-input type="text" placeholder="text..."></ion-input> -->
+        <ion-textarea #messsageText placeholder="Enter more information here..." style="border: 1px solid lightgray;"></ion-textarea>
+       </ion-item>
+      
+       <ion-tab-button>
+        <ion-icon size="small" name="send"></ion-icon>
+        <ion-label>ssend</ion-label>
+      </ion-tab-button>
+    </ion-item>
+   
+  
+  </ion-list>

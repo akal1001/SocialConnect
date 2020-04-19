@@ -9,6 +9,8 @@ export interface IContentPost {
     _DateTime?: string;
     _posterProfileImageUrl?:any;
     _posterName?:string;
+    _ContentType?:string;
+    _ContentImageURLs?:string[];
     _countContentPosterFollowrs?:number;
     _countContentLikes?:number;
     //not maped

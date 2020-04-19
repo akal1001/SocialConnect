@@ -1,385 +1,65 @@
-<ion-header >
-  <ion-toolbar color="green">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>home</ion-title>
-  </ion-toolbar>
+<ion-header>
+    <ion-toolbar color="green">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>BSM</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<!-- <object width="100%" height="300px" data="https://www.youtube.com/embed/tgbNymZ7vqY">
-</object>
-<hr> -->
-
-
-<p style="align-items: center; text-align: center;" id="myspiner2">
-
-  loading...
- 
-</p>
-
-
-<div *ngFor="let content of contentList2" id="mainContainer" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-  style="padding: 0%;">
-
-  <div id="contentContainer" style="padding: 0%;">
-      <ul id="header" style="padding: 1%;">
-          <li>
-
-              <button id="{{content.posterReferanceId}}" color="" mat-button #ids
-                  (click)="thisUserInfo(content.posterReferanceId)" style="padding: 0%;">
-                  <img src='{{content._UserProfileImageUrl}}' mat-button>
-              </button>
-              <!-- <a>
-                  <img src='{{content._UserProfileImageUrl}}' mat-button routerLink="/user">
-              </a> -->
-
-              <!-- <img src='{{content._UserProfileImageUrl}}'><br> -->
-              <!-- {{content.posterReferanceId}} -->
-
-          </li>
-          <li>
-              <h5 style="display: inline; text-transform: capitalize;">
-                  {{content._Username}}
-
-              </h5>
-              <br> <small style="text-transform: lowercase;" id="{{content.posterReferanceId}}">
-                  {{content._countContentPosterFollowrs}}
-                  followers</small>
-
-          </li>
-      </ul>
-      <hr style="margin: 0%;">
-      <ul style="padding: 0%;">
-          <li *ngIf="content.articleHeader !=null" style="margin: 0%; padding-bottom: 0%; ">
-              <h4
-                  style="text-transform: capitalize; padding: 0%;padding-left: 2%;padding-right: 2%; word-wrap: break-word; margin-bottom: 0%;">
-                  {{content.articleHeader}}
-              </h4>
-          </li>
-          <li style="padding: 0%;">
-              <p *ngIf="content.articleOrDescription !== null"
-                  style="padding: 2%; padding-bottom: 0%; margin-bottom: 0%; word-wrap:break-word;">
-
-                  <!-- <small>
-                  {{content. contentPostId}}
-              </small> -->
-
-                  {{content?. articleOrDescription}}
-                  <a href="url">http://localhost:4200/home</a>
-              </p>
-
-          </li>
-      </ul>
-      <ul id="contentbody" style="padding: 0%;">
-
-
-          <li *ngIf="content?._ContentType === 'image'" style="padding: 0%;">
-              <img src="{{content._ContentImageURLs[0]}}" style="width: 100%; min-height:0;  text-align: center;">
-
-          </li>
-          <li *ngIf="content?._ContentType === 'video'" style="padding: 0%;">
-
-              <video width="100%" height="auto" controls preload="auto">
-                  <source src="{{content._ContentImageURLs[0]}}#t=00:00:01" type="video/mp4">
-
-
-              </video>
-          </li>
-      </ul>
-      <hr style="margin: 0%;">
-      <ul id="conntentfooter" style="height:40px; padding: 0%; padding-bottom: 0%;  margin: 0%; margin-bottom: 0%;display: flex;
-      align-items: center;">
-
-          <li id="{{content. contentPostId}}" (click)="likeThisContent(content.contentPostId)">
-
-              <div class="myd" style=" width: 35px;">
-                  <a class="btn"
-                      style="color:gray;font-weight:500; text-align: center;  text-transform: capitalize; height:25px; padding: 0%;"
-                      role="button">
-                      <!-- <mat-icon style="color: gray;height:20px;">thumb_up_alt</mat-icon> -->
-                      <img style="height:25px; width: 25px;" src="assets/icons/like.PNG"
-                          style="margin: 0%;margin-top: -3px;">
-                  </a>
-              </div>
-              <div class="myd" style="width: 60px">
-                  <p style=" color: gray;  width:100%; float: left; text-align: left; height: 100%; padding:0%; font-weight:500; text-transform: capitalize; margin: 0%;"
-                      id="{{content. contentPostId+20}}">{{content. _countContentLikes}}
-                      likes</p>
-              </div>
-
-
-
-          </li>
-
-          <li>
-              <a class="btn" data-toggle="collapse" href="#{{content.contentPostId + 1}}" role="button"
-                  aria-expanded="false" aria-controls="collapseExample"
-                  style="color:gray;  font-weight:500; float: center; text-transform: capitalize; height:100%; width: 100%;padding: 1%;">
-                  {{content._conmentLenght}} comments +
-              </a>
-              <!-- <p style="  float: left; width:76%; height: 100%; padding-top: 2%; text-align: left;">
-                     
-              </p> -->
-          </li>
-          <li>
-              <a class="btn"
-                  style="color:gray; font-weight:500; float: right;text-transform: capitalize; text-align: center; height:100%; width: 100%;padding: 1%;"
-                  id={{content.posterReferanceId}} #posterRefId (click)="followThisContentPoster(posterRefId.id)"
-                  role="button">
-
-                  follow
-
-
-              </a>
-
-
-          </li>
-
-      </ul>
-
-      <!--  <div class="collapse" id="{{content.contentPostId + 1}}"> -->
-
-      <div style="background-color: #f2f5fc; margin-top: 0%;" class="" id="{{content.contentPostId + 1}}"
-          style="border-top: 1px solid white; ">
-          <div style=" width: 100%; padding:0%; border-bottom: 1px solid lightgray;" id="{{content.contentPostId+2}}">
-              <ul id="commnerList" *ngFor="let comment of content._comments"
-                  style="width: 100%; padding: 2%; margin:0%;background-color:#f8fafd;  padding-top: 0%; padding-bottom: 0%; padding-top: 1%;padding-bottom: 1%; padding-left: 1%;">
-                  <li id="imgli"
-                      style=" width: 15%; max-height:50px;  vertical-align: top; padding: 1; padding-top: 4%; text-align: center; display: inline-block; background-color: #f8fafd;">
-
-
-                      <!-- <img src="{{comment._user.profileImageURL}}"
-                          style="width:45px;height: 45px;border-radius: 50%; margin: 0%; "> -->
-
-
-                      <button id="{{content.posterReferanceId}}" color="" mat-button #ids
-                          (click)="thisUserInfo(comment._user.userId)" style="padding: 0%;">
-                          <img src='{{comment._user.profileImageURL}}'
-                              style="width:45px;height: 45px;border-radius: 50%; margin: 0%; " mat-button>
-                      </button>
-
-                      <!-- <img src="{{comment._user.profileImageURL}}"
-                          style="width:50px;height: 40px;border-radius: 50%; vertical-align: top; margin: 0%; float: right;"> -->
-
-
-                  </li>
-                  <li
-                      style="width: 83%; padding: 1%;  display: inline-block;  margin: 0%;background-color:#f8fafd;padding-top:1%; padding-bottom:1%;">
-                      <small style="font-weight: lighter;text-transform: capitalize;">
-
-                          {{comment._user.userName}} | {{comment._DateTime}}
-                      </small>
-                      <p style="word-wrap: break-word; vertical-align: 0%; width: 100%; margin:1%; margin-left: 0%; ">
-                          {{comment._Comment}}
-
-
-
-                          <!-- <small>
-                              {{comment.commentId}}
-                          </small> -->
-
-                      </p>
-                      <div style="padding: 0%;margin: 0%;">
-                          <a class="btn" data-toggle="collapse" href="#{{comment.commentId}}" role="button"
-                              aria-expanded="false" aria-controls="collapseExample"
-                              style="margin: 0%;padding: 0%; margin: 0%; text-transform: lowercase;">
-                              view replay
-                          </a>
-
-                      </div>
-                      <div class="collapse" id="{{comment.commentId}}" style="padding: 0%;">
-
-                          <ul id="repliList" *ngFor="let replay of comment._replay">
-                              <li style="width: 10%; vertical-align: top;">
-                                  <img src="{{replay._user.profileImageURL}}"
-                                      style="width: 30px; height:30px; border-radius: 50%; vertical-align: top;">
-
-                                  <!-- <img src="{{replay._user.profileImageURL}}" style="width: 100%; max-height:50px; border-radius: 50%; vertical-align: top;"> -->
-
-
-                              </li>
-                              <li style="width: 90%; padding: 1%;">
-                                  <p style="word-wrap: break-word; vertical-align: 0%; width: 100%; padding: 1%;">
-                                      {{replay.replayContent}}
-                                  </p>
-                              </li>
-
-                          </ul>
-
-                          <ul>
-                              <li>
-                                  <!-- <textarea input type="text" #replayText>
-                                              
-                                          </textarea> -->
-                                  <input type="text" #replayText>
-
-                                  <button id="{{comment.commentId}}" type="click" #replayId
-                                      (click)="ReplayToTheComment(replayId.id, replayText.value)"
-                                      class="float-left submit-button">Replay</button>
-
-                              </li>
-                          </ul>
-                      </div>
-
-
-                  </li>
-                  <hr style="margin: 0">
-
-              </ul>
-
-          </div>
-          <div style="background-color: white">
-              <form #commentForm="ngForm" style="margin: 1%;">
-
-                  <ul id="commnentUl" style="width: 100%; margin: 0%; padding: 0%;background-color:white">
-
-                      <li
-                          style=" width: 15%; max-height:50px;  vertical-align: top; text-align: center; display: inline-block;">
-                          <img src='{{_profileImage_1}}'
-                              style="width:45px;height: 45px;border-radius: 50%; vertical-align: top; margin: 0%; ">
-                      </li>
-                      <li style="width: 70%;">
-                          <textarea class="commentInputs" name="comment" [(ngModel)]="comment"
-                              id="{{content. contentPostId}}" placeholder='leave a comment...' vaue="sss"
-                              style="width: 100%; min-height: 50px; padding: 3%; padding-bottom: 0; border-radius: 2%;  border: 1px solid lightgray; background-color: #f8fafd; "></textarea>
-
-                      </li>
-                      <li style="width: 10%; vertical-align: top; ;">
-                          <button class="commentInputs" (click)="leaveComment(commentForm, myId.id,myId.value)" #myId
-                              value="{{content. contentPostId+2}}" id="{{content. contentPostId}}" class=""
-                              style="height: 50px; width: 50px; background-color: #f8fafd; border: 1px solid lightgray; border-radius: 50%;">post</button>
-
-                          <!-- <button (click)="createElementForComment()">
-                                      create
-                                  </button> -->
-
-                      </li>
-                  </ul>
-
-              </form>
-          </div>
-
-      </div>
-
-  </div>
-  <div>
-
-
-
-
-
-  </div>
-
-
-
-
-
-</div>
-
-
-
-<div id="mainContainer1" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0%;">
-
-  <div id="contentContainer" style="padding: 0%;">
-      <ul id="header" style="padding: 0%;">
-          <li>
-
-
-              <img
-                  src='https://firebasestorage.googleapis.com/v0/b/testhouse-ff733.appspot.com/o/wkopfemsgj?alt=media'>
-              <!-- <img src='{{content._UserProfileImageUrl}}'><br> -->
-              <!-- {{content.posterReferanceId}} -->
-
-          </li>
-          <li>
-              <h5 style="display: inline;">
-                  name name
-
-              </h5>
-              <br> <small style="text-transform: lowercase;" id="">
-                  44444
-                  followers</small>
-
-          </li>
-      </ul>
-
-      <ul id="contentbody" style="padding: 0%;">
-
-          <li style="margin: 0%; padding-bottom: 0%; ">
-              <h3 style="font-weight: lighter; text-transform: capitalize; margin:0%;margin-bottom: 1%; padding: 2%;">
-
-              </h3>
-          </li>
-          <li style="padding: 0%;  ">
-              <!-- <object width="100%" height="300px" data="https://www.youtube.com/embed/M7Zc1jHf-00">
-              </object> -->
-             
-
-              <!-- <iframe width="100%" height="300px" src="https://www.youtube.com/embed/M7Zc1jHf-00" frameborder="0" ></iframe> -->
-              <!-- <img src="{{content._ContentImageURLs[0]}}" style="width: 100%; height: auto;  text-align: center;">
-              <hr style="margin: 1%;"> -->
-              <p style="word-wrap:break-word"
-                  style="padding: 5%; padding-bottom: 0%; padding-top: 1%; margin-bottom: 0%;">
-
-                  <!-- <small>
-                      {{content. contentPostId}}
-                  </small> -->
-
-
-              </p>
-
-              <video controls="" autoplay="" name="media"><source src="https://r1---sn-5uaeznkz.googlevideo.com/videoplayback?expire=1578491496&amp;ei=CIoVXq6PAqqvz7sPv_qMgAk&amp;ip=1.20.196.14&amp;id=o-APurcIl_NSfIl9NBMdwvVHhVyK-5z430r3ll6H3b77xg&amp;itag=18&amp;source=youtube&amp;requiressl=yes&amp;vprv=1&amp;mime=video%2Fmp4&amp;gir=yes&amp;clen=4472228&amp;ratebypass=yes&amp;dur=198.344&amp;lmt=1537405001672087&amp;fvip=1&amp;fexp=23842630,23860862&amp;c=WEB&amp;txp=2211222&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&amp;sig=ALgxI2wwRQIhAPMtoOxas7NLg0rbFCse371igtm6voJWsu80k2ZSXPPPAiAWg97pCmIiacTvrul62YPxWf9ELZ3gnCOzynnZ_Dwepg%3D%3D&amp;video_id=f6diFQoIqj8&amp;title=jah+lude+new+official+music+%28Dingil+Zema%29&amp;rm=sn-uvu-c33d7e,sn-uvu-c33ez7e,sn-30aey7e&amp;req_id=2a372b20c04aa3ee&amp;redirect_counter=3&amp;cms_redirect=yes&amp;ipbypass=yes&amp;mip=2607:fb90:7c3a:7c7:6558:ec56:7d0:5a7f&amp;mm=30&amp;mn=sn-5uaeznkz&amp;ms=nxu&amp;mt=1578469821&amp;mv=m&amp;mvi=0&amp;pl=40&amp;usequic=no&amp;lsparams=ipbypass,mip,mm,mn,ms,mv,mvi,pl,usequic&amp;lsig=AHylml4wRgIhAMzxfsF1bAMzn8FoJNY8fT8Tileiw4r8dPVxZQ1ymG2LAiEAgzGSH8Zzz-1yqGxczgEoLOAi_WAoruQwlUNvENFk25Y=" type="video/mp4"></video>
-
-          </li>
-      </ul>
-
-      <ul id="conntentfooter" style="padding: 0%;">
-
-          <li id="" style=" text-align: left;">
-
-              <a class="btn"
-                  style="color:gray;font-weight:500; float: left; text-transform: capitalize; height:100%; width: 25%;padding: 1%;"
-                  role="button">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-grid fixed style="background-color:#e8f0f0; padding: 0%;">
+        <ion-row *ngFor="let content of contentList2" style="background-color: white; border-bottom: 1px solid lightgray;border-top: 1px solid lightgray;margin-bottom: 10px;">
+
+            <ion-col class="contentHeader" size="2" (click)="OnUserImage(content.posterReferanceId)"
+                routerLink="/profile/{{content.posterReferanceId}}">
+                <img class="profileImage" [src]="content._UserProfileImageUrl" id="{{content.posterReferanceId}}"
+                    [alt]="content.name + ' profile picture'">
+            </ion-col>
+            <ion-col class="contentHeader" size="10">
+                {{content._Username}}<br>
+                {{content._countContentPosterFollowrs}} flollowers
+            </ion-col>
+          
+            <ion-col  class="contentBody"  size="12" *ngIf="content.articleOrDescription !=null">
+                <b> {{content?.articleHeader}}</b> 
+                <p> {{content?.articleOrDescription}}</p>
+            </ion-col>
+            <ion-col  class="contentBody" size="12" *ngIf="content?._ContentType === 'image'">
+                <img [src]="content._ContentImageURLs[0]">
+            </ion-col>
+            <ion-col  class="contentBody" size="12" *ngIf="content?._ContentType === 'video'">
+                <video style="width: 100%; min-height:0;  text-align: center;" controls preload="auto">
+                    <source src="{{content._ContentImageURLs[0]}}#t=00:00:01" type="video/mp4">
+                </video>
+            </ion-col>
+            <ion-col size="12">
+
+            </ion-col>
+            <ion-col class="eachFooter" size="4" (click)="likeThisContent(content.contentPostId)">
+               
+                    {{content._countContentLikes}} like
                 
-              </a>
-              <p style=" color: gray; float: left; width:70%; height: 100%; padding:3%; font-weight:500; text-transform: capitalize;"
-                  id="">3333
-                  likes</p>
-          </li>
+            </ion-col>
+            <ion-col class="eachFooter" size="4" (click)="followThisContentPoster(content.posterReferanceId)">
+                
+                    follow
+            
+            </ion-col>
+            <ion-col class="eachFooter" size="4" (click)="OnComment(content.contentPostId)" routerLink="/comments/{{content.contentPostId}}">
 
-          <li>
-              <a class="btn" data-toggle="collapse" href="" role="button" aria-expanded="false"
-                  aria-controls="collapseExample"
-                  style="color:gray;  font-weight:500; float: left; text-transform: capitalize; height:100%; width: 100%;padding: 1%;">
-                  + comments 5
-              </a>
-              <!-- <p style="  float: left; width:76%; height: 100%; padding-top: 2%; text-align: left;">
-                     
-              </p> -->
-          </li>
-          <li>
-              <a class="btn"
-                  style="color:gray; font-weight:500; float: left; text-transform: capitalize; height:100%; width: 100%;padding: 1%;"
-                  id="" #posterRefId role="button">
+              
+                    {{content._conmentLenght}} comment
+             
+            </ion-col>
+            <ion-col size="12">
 
-                  follow
+            </ion-col>
+            <!-- test -->
 
-
-              </a>
-
-
-          </li>
-
-      </ul>
-
-
-
-  </div>
-  <div>
-  </div>
-</div>
-<div>
-</div>
+        </ion-row>
+    </ion-grid>
 </ion-content>

@@ -61,8 +61,8 @@ export class LoginPage implements OnInit {
          // this.getthisProfilePicurNow();
          //this._router.navigate(['home']);
         //window.location.replace('http://localhost:4200/home')
-        window.location.replace('https://testmsg-59a24.firebaseapp.com/home')
-
+        // window.location.replace('https://testmsg-59a24.firebaseapp.com/home')
+        this._router.navigateByUrl('/tabs/home');
         }
         else {
           var docs = document.getElementById("signResult");

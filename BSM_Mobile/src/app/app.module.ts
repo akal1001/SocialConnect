@@ -18,10 +18,10 @@ import {AngularFireStorage} from 'angularfire2/storage';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, HttpClientModule,IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp({
-    apiKey: "AIzaSyDav-Ub8sGOrejhRBDsPkMiUz4nQS8-rQE",
+    apiKey: "AIzaSyAsB6NO7QvN-DCV-tycqx9szfmuojEjmtE",
     authDomain: "<your-auth-domain>",
-    storageBucket: "gs://tst20-f7702.appspot.com/",
-    projectId: "<tst20-f7702",
+    storageBucket: "gs://bsmm-2016e.appspot.com/",
+    projectId: "<bsmm-2016e",
   })],
   providers: [
     StatusBar,

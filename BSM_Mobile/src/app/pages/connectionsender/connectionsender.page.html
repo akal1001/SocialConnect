@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
         <ion-back-button defaultHref="tabs/home"></ion-back-button>
       </ion-buttons>
-    <ion-title>people</ion-title>
+    <ion-title>connectionsender</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,6 @@
                 <div class="box">
                     <img class="profileImage" src="{{item.profileImageURL}}" id="{{item.userId}}"> <br>
              
-                   
                 </div>
                 <div class="box">
                     <ion-label>
@@ -22,11 +21,10 @@
                     </ion-label>
                 </div>
                 <div class="box"> 
-             
+                    
                 <a class="btn"
-                style="color:gray; text-transform: capitalize; font-weight:normal;border: 1px solid lightgray; padding:2%; padding-top: 1%;"
-                id="{{item.userId}}" #posterRefId (click)="ClickConnect(posterRefId.id)" role="button">
-                conntect
+                id="{{item.userId}}" #posterRefId (click)="DropThisConnectRequestISend(item.userId)" role="button">
+                drop this request
             </a>
                 </div>
             </ion-col>

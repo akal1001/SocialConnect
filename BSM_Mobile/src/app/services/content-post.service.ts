@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {environment} from "src/environments/environment.prod";
 import { Observable } from 'rxjs';
 import { IContentPost } from '../interfaces/icontent-post';
+import { IComment } from '../interfaces/icomment';
 //import {environment} from "src/environments/environment";
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,17 @@ export class ContentPostService {
        return this._httpClient.post<boolean>(endpoint, "");
 
    }
+   async GetData()
+   {
+       const data = this.ReturnAllContentService();
+       return data;
+   } 
+   //not tested
+   getSingleContenService(cntentId:string) :Observable<IContentPost>
+   {
+       return this._httpClient.get<IContentPost>(this._Url + "content?id=" + cntentId);
+   }
+
    //return all user referance id
    ReturnAllContentService(): Observable<IContentPost[]> {
        return this._httpClient.get<IContentPost[]>(this._Url + "GetAllContentsPosts1?userId="+ window.localStorage.getItem(window.localStorage.key(0)));

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+        <ion-back-button defaultHref="/home"></ion-back-button>
+      </ion-buttons>
+    <ion-title>contacts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list >
+    <ion-item *ngFor="let item2 of users" routerLink="/messaging">
+        
+            <img class="contactProfileImage" id={{item2.userId+1}} [src]="item2.profileImageURL" (click)="OnConnectClick(item2.userId, item2.profileImageURL, item2.userName)" >
+        
+        <ion-label>
+            {{item2.userName}}
+        </ion-label>
+       
+    </ion-item>
+    
+</ion-list>
+
+</ion-content>

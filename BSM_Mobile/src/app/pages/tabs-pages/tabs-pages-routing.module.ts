@@ -18,6 +18,8 @@ const routes: Routes = [
           }
         ]
       },
+      
+     
       {
         path: 'post',
         children: [
@@ -28,16 +30,7 @@ const routes: Routes = [
           }
         ]
       },
-      {
-        path: 'list',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../message/message.module').then(m => m.MessagePageModule)
-          }
-        ]
-      },
+      
       {
         path: 'people',
         children: [

@@ -1,9 +1,79 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/home"></ion-back-button>
+    </ion-buttons>
     <ion-title>post</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin: 0%;">
+    <p style="height: 0; align-items: center;  text-align: center; visibility: hidden;" id="myspiner234;">
+  
+      posting your content...
+     
+  
+    </p>
+  </div>
+  
+  
+  
+  
+  <form #imageForm="ngForm">
+    <div class="row">
+      <div class="samplePostLooks col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <img class="sampleProfileImag" id="" src='{{_profileImage_1}}'>
+        <hr>
+        <h4 style="word-wrap: break-word;">{{articleHeader}}</h4>
+  
+        <p style="word-wrap: break-word;">
+          {{articleOrDescription}}
+          {{articleOrDescription?.length}}
+        </p>
+  
+  
+        <img src='{{imageUrl}}' style="width: 100%; height: auto;">
+  
+  
+        <!-- <label for="upload_photo">
+          <mat-icon matBadgeColor="warn">add_photo_alternate</mat-icon> -->
+  
+        <!-- </label> -->
+        <!-- <input type="file" id="upload_photo" #Image accept="media_type/*"  (change)="handleFileInput($event)"> -->
+  
+  
+        <hr>
+  
+        <!-- <input id="upload_photo" type="file" #Image accept="image/*;capture=camera" (change)="handleFileInput($event)">
+        <input id="upload_photo" type="file" #Image accept="video/*;capture=camcorder" (change)="handleFileInput($event)"> -->
+        <input id="upload_photo" type="file" #Image accept="audio/*;capture=microphone" (change)="handleFileInput($event)">
+  
+      </div>
+      <div class="actualPoster col-lg-7 col-md-7 col-sm-12 col-xs-12">
+  
+        <textarea id='' placeholder="Write a header  for your post" name='articleHeader' [(ngModel)]='articleHeader'
+          type='text'>
+          </textarea>
+        <hr>
+  
+        <textarea style="min-height:200px" matInput placeholder="Write a description or article"
+          name='articleOrDescription' [(ngModel)]='articleOrDescription'></textarea>
+  
+  
+      </div>
+      <hr>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <br>
+        <h4 id="postedMesage" style="text-transform: uppercase; font-weight: lighter;">
+          {{message}}
+        </h4>
+        <input type="button" value="Post" (click)="UpladFileToFirebase(imageForm)" class="btn btn-success btn-submit"
+          style="width: 100%;">
+  
+        <!-- <input (click)="UploadS3bucket()" value="upload now"> -->
+  
+      </div>
+    </div>
+  </form>
 </ion-content>

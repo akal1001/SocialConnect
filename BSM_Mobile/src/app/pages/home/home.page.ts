@@ -83,24 +83,7 @@ export class HomePage  implements OnInit{
   public followCountreusltu: string;
   public _profileImage_1: string;
 
-  // IsUserAutenicated() {
-  //   this._AccountService.IsUserAuthenticatedService(window.localStorage.getItem("_user1")).subscribe((resposne) => {
-  //     if (resposne == true) {
-  //       this._profileImage_1 = window.localStorage.getItem("_pI1");
 
-  //       this.ReturnContentPost();
-  //     }
-  //     else {
-
-  //       window.localStorage.clear();
-  //       this._router.navigate(['account']);
-
-
-
-  //     }
-  //   })
-
-  // }
 
   IsUserAutenicated() {
     this._AccountService.IsUserAuthenticatedService(window.localStorage.getItem("_user1")).subscribe((resposne) => {
@@ -211,7 +194,9 @@ export class HomePage  implements OnInit{
 
 
   }
-  likeThisContent(contentId: string) {
+  likeThisContent(contentId: string)
+   {
+     console.log("conent id : " + contentId)
     if (window.localStorage.getItem("_user1") == undefined) {
       alert("Login required!")
     }
@@ -221,7 +206,7 @@ export class HomePage  implements OnInit{
 
       this._contentPost.PostLikeToTheContent(window.localStorage.getItem("_user1"), contentId).subscribe((response) => {
         this.CountResult = response;
-        document.getElementById(contentId + 20).innerText = response + " likes";
+        document.getElementById(contentId).innerText = response + " likes";
         console.log("count result : " + response);
       });
     }

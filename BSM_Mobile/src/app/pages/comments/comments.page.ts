@@ -27,6 +27,7 @@ export class CommentsPage implements OnInit
     return this.content.getSingleContenService(id).subscribe((data) => 
     {
       this.singleContent = data;
+      
       console.log(data);
     }, error=>{
       console.log("Error on getting single content wit comment! " + error)
@@ -40,10 +41,13 @@ export class CommentsPage implements OnInit
     
   }
 
-  PostComment(contentId: string, commentrId: string, comment: string) {
+  PostComment(comment: string) {
+    console.log("comment: " + comment);
     return this.content
-      .PostCommentService(contentId, commentrId, comment)
-      .subscribe((data) => {
+      .PostCommentService(localStorage.getItem("_contentId"), window.localStorage.getItem("_user1"), comment)
+      .subscribe((data) => 
+      {
+        console.log()
         console.log("Post comment : " + data);
       },
       error=>{
@@ -73,4 +77,6 @@ export class CommentsPage implements OnInit
   {
 
   }
+
+  
 }

@@ -6,6 +6,7 @@ export interface IContentPost {
     imageRefreanceId?: any;
     articleOrDescription?: any;
     articleHeader?:any;
+    _UserProfileImageUrl?:any;
     _DateTime?: string;
     _posterProfileImageUrl?:any;
     _posterName?:string;

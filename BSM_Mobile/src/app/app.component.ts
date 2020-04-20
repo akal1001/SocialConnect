@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -9,9 +9,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
+  public username="";
    public userid = "";
+   public UserProfile="";
 
   constructor(
     private platform: Platform,
@@ -19,6 +21,13 @@ export class AppComponent {
     private statusBar: StatusBar
   ) {
     this.initializeApp();
+  }
+
+  ngOnInit() {
+    
+  this.username = localStorage.getItem("_name")
+  this.UserProfile = localStorage.getItem("_pI1")
+
   }
 
   initializeApp() {

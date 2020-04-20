@@ -25,8 +25,8 @@
             </ion-col>
           
             <ion-col  class="contentBody"  size="12" *ngIf="content.articleOrDescription !=null">
-                <b> {{content?.articleHeader}}</b> 
-                <p> {{content?.articleOrDescription}}</p>
+                
+                <p> <b> {{content?.articleHeader}}</b> {{content?.articleOrDescription}}</p>
             </ion-col>
             <ion-col  class="contentBody" size="12" *ngIf="content?._ContentType === 'image'">
                 <img [src]="content._ContentImageURLs[0]">
@@ -39,7 +39,7 @@
             <ion-col size="12">
 
             </ion-col>
-            <ion-col class="eachFooter" size="4" (click)="likeThisContent(content.contentPostId)">
+            <ion-col id={{content.contentPostId}} class="eachFooter" size="4" (click)="likeThisContent(content.contentPostId)">
                
                     {{content._countContentLikes}} like
                 

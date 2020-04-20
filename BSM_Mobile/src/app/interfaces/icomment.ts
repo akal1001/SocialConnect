@@ -4,9 +4,9 @@ export interface IComment {
     likeDislikeCommentId?: any;
     referanceId?: any;
     commenterId?: any;
-    commenterProfileImgUrl?: any;
+    _commenterProfileImageURL?: any;
     likeDislike?: any;
-    comment?: any;
+    _Comment?: any;
     _DateTime?: any;
     number?: string;
     _replay?:IReplay[];

@@ -11,38 +11,50 @@
 
 
 <ion-content>
-    <ion-grid>
+    <ion-grid style="padding: 0%;">
         <ion-row>
-            <ion-col size="2">
+            <ion-col class="contentHeader"  size="2">
 
-                <img class="profileImage" [src]="singleContent?._ContentImageURLs">
+                <img class="profileImage" [src]="singleContent?._UserProfileImageUrl">
 
             </ion-col>
-            <ion-col size="10">
+            <ion-col class="contentHeader"  size="10">
                 <ion-label>
                     {{"name name"}} <br>
                     {{singleContent?._countContentPosterFollowrs}}
                 </ion-label>
             </ion-col>
-            <ion-col size="12" size-md="6">
-                <img class="profileContent" [src]="singleContent?._ContentImageURLs">
+           
+            <ion-col size="12" size-md="6"  class="contentBody"  size="12" *ngIf="singleContent?.articleOrDescription !=null">
+                <b> {{singleContent?.articleHeader}}</b> 
+                <p> {{singleContent?.articleOrDescription}}</p>
+            </ion-col>
+            <ion-col  class="contentBody" size="12" *ngIf="singleContent?._ContentType === 'image'">
+                <img class="ContentImage" [src]="singleContent?._ContentImageURLs">
+            </ion-col>
+            <ion-col  class="contentBody" size="12" *ngIf="singleContent?._ContentType === 'video'">
+                <video style="min-height:0;  text-align: center;" controls preload="auto">
+                    <source src="{{singleContent?._ContentImageURLs}}#t=00:00:01" type="video/mp4">
+                </video>
             </ion-col>
             <br>
             <br>
-            <ion-row>
-                <ion-col size="2">
-                    <img class="profileImage" [src]="singleContent?._ContentImageURLs">
+            <ion-row *ngFor="let com of singleContent?._comments" style="width: 100%;">
+                <ion-col size="2" class="commenterColumen" >
+                    <img class="profileImageCommenter" [src]="com?._commenterProfileImageURL">
                 </ion-col>
                 <ion-col size="10">
                     <p>
-                        ative: tried calling StatusBar.styleDefault,
-                        but Cordova is not
-                        available. Make sure to include cordova.js or run in a device/simulato
+                        {{com?._Comment}}
                     </p>
                    
                 </ion-col>
-                <ion-col size="2">
-                    <img class="profileImage" [src]="singleContent?._ContentImageURLs">
+            
+             
+            </ion-row>   
+            <ion-row>
+                <ion-col class="commenterColumen" size="2">
+                    <img class="profileImageCommenter" [src]="singleContent?._ContentImageURLs">
                 </ion-col>
                 <ion-col size="10">
                     <p>
@@ -50,23 +62,37 @@
                         but Cordova is not
                         available. Make sure to include cordova.js or run in a device/simulato
                     </p>
-                    <ion-col size="2">
-                        <img class="profileImage" [src]="singleContent?._ContentImageURLs">
-                    </ion-col>
-                    <ion-col size="10">
-                        <p>
-                            ative: tried calling StatusBar.styleDefault,
-                            but Cordova is not
-                            available. Make sure to include cordova.js or run in a device/simulato
-                        </p>
-                    </ion-col>
+                  
+                    <ion-row>
+                        <ion-col size="6">
+
+    344 like
+
+                        </ion-col>
+                        <ion-col size="6">
+                            <a>
+                                retplay
+                            </a>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size="2">
+                            <img class="profileImageCommenter" [src]="singleContent?._ContentImageURLs">
+                        </ion-col>
+                        <ion-col id="2" size="10">
+                            <p>
+                                ative: tried calling StatusBar.styleDefault,
+                                but Cordova is not
+                                available. Make sure to include cordova.js or run in a device/simulato
+                            </p>
+                        </ion-col>
+                    </ion-row>
+                    
                 </ion-col>
             </ion-row>
-           
-                
             </ion-row>
     </ion-grid>
-
+  
 
 
 
@@ -180,21 +206,16 @@
 
 
 </ion-content>
-<ion-list>
-    <ion-item>
-      
-  
-  
-      <ion-item style="width: 90%;">
-        <!-- <ion-input type="text" placeholder="text..."></ion-input> -->
-        <ion-textarea #messsageText placeholder="Enter more information here..." style="border: 1px solid lightgray;"></ion-textarea>
-       </ion-item>
-      
-       <ion-tab-button>
-        <ion-icon size="small" name="send"></ion-icon>
-        <ion-label>ssend</ion-label>
-      </ion-tab-button>
-    </ion-item>
+<ion-row>
    
-  
-  </ion-list>
+    <ion-col size="12" style="padding: 0%;">
+        <ion-item style="border: 1px solid lightgray; padding: 0%;">
+        <ion-textarea #messsageText placeholder="Write your comment here.."></ion-textarea>
+        <ion-button color="success" (click)="PostComment(messsageText.value)">
+            post
+         </ion-button>
+         
+        </ion-item>
+    </ion-col>
+   
+</ion-row>

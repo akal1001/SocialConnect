@@ -31,41 +31,21 @@
           {{profile?._about.aboutMe}}
         </p>
       </ion-col>
-      <ion-col *ngFor="let content of profile?._contents">
-        <ion-col  class="contentBody"  size="12" *ngIf="content.articleOrDescription !=null">
-          <b> {{content?.articleHeader}}</b> 
-          <p> {{content?.articleOrDescription}}</p>
-      </ion-col>
-      <ion-col  class="contentBody" size="12" *ngIf="content?._ContentType === 'image'">
-          <img [src]="content._ContentImageURLs[0]">
-      </ion-col>
-      <ion-col  class="contentBody" size="12" *ngIf="content?._ContentType === 'video'">
-          <video style="width: 100%; min-height:0;  text-align: center;" controls preload="auto">
-              <source src="{{content._ContentImageURLs[0]}}#t=00:00:01" type="video/mp4">
-          </video>
+      <ion-col size="12">
+        <h3>
+          acitivity
+        </h3>
+        <p>
+          {{profile?._about.aboutMe}}
+        </p>
       </ion-col>
       <ion-col size="12">
-
-      </ion-col>
-      <ion-col class="eachFooter" size="4" >
-         
-              {{content._countContentLikes}} like
-          
-      </ion-col>
-      <ion-col class="eachFooter" size="4">
-          
-              follow
-      
-      </ion-col>
-      <ion-col class="eachFooter" size="4"  routerLink="/comments/{{content.contentPostId}}">
-
-        
-              {{content._conmentLenght}} comment
-       
-      </ion-col>
-      <ion-col size="12">
-
-      </ion-col>
+        <h3>
+          contact
+        </h3>
+        <p>
+          333 333 33333
+        </p>
       </ion-col>
     </ion-row>
   </ion-grid>

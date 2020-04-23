@@ -1,12 +1,15 @@
+
 .profileImage{
    
     height: 50px;
     width: 50px;
     border-radius: 50%;
     border: 1px solid lightgray;
+}.ContentImage{
+    min-height: 150px;
 }
 .contentHeader{
-    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
 
 }
 .profileImageCommenter{
@@ -22,7 +25,10 @@
   
 }
 p{
-    //margin: 0;
+    margin: 0;
+    padding-left: 2%;
+    padding-right:2%;
+    padding-bottom: 2%;
 }
 
 ion-button{
@@ -32,10 +38,32 @@ ion-button{
     border-radius: 0;
     
 }
+.eachFooter{
+ 
+    width: 100%;
+    height: 40px;
+    vertical-align: center;
+    
+    text-align: center;
+    color: gray;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .contentBody{
+    padding: 0%;
+  }
 ion-col{
  //vertical-align: center;
  //border: 1px solid red;
 }
 ion-row{
-    //border-bottom: 1px solid lightgray;
+    //border-bottom: 1px solid green;
+}
+p{
+    margin-top: 0em;
+}
+ion-button{
+    margin: 0;
+    right: 0;
 }

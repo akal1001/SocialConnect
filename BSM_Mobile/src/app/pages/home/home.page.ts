@@ -1,20 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IComment } from 'src/app/interfaces/icomment';
-import { DataService } from 'src/app/services/data.service';
-import { AccountService } from 'src/app/services/account.service';
-import { Router } from '@angular/router';
-import { ContentPostService } from 'src/app/services/content-post.service';
-import { IContentPost } from 'src/app/interfaces/icontent-post';
-import { NgForm } from '@angular/forms';
-import { LoadingController } from '@ionic/angular';
+import { Component, OnInit, Input } from "@angular/core";
+import { IComment } from "src/app/interfaces/icomment";
+import { AccountService } from "src/app/services/account.service";
+import { Router } from "@angular/router";
+import { ContentPostService } from "src/app/services/content-post.service";
+import { IContentPost } from "src/app/interfaces/icontent-post";
+import { LoadingController } from "@ionic/angular";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: "app-home",
+  templateUrl: "./home.page.html",
+  styleUrls: ["./home.page.scss"],
 })
-export class HomePage  implements OnInit{
-
+export class HomePage implements OnInit {
   contentPostId?: any;
   posterReferanceId?: any;
   imageRefreanceId?: any;
@@ -29,53 +26,47 @@ export class HomePage  implements OnInit{
   _comments?: IComment[];
 
   comment?: string;
-
-
-
-  
   @Input() testV: any;
 
   public texts: any;
-  public tesId;
+  public tesId: any;
 
+  public tempData: string[];
 
-  public vid = "dQw4w9WgXcQ";
-  public sharedVedio: any = 'https://www.youtube.com/embed/M7Zc1jHf-00';
+  constructor(
+    public loadingController: LoadingController,
+    private _contentPost: ContentPostService,
 
-
-  constructor( public loadingController: LoadingController,private _contentPost: ContentPostService, private _dataService: DataService, private _AccountService: AccountService, private _router: Router) { }
+    private _AccountService: AccountService,
+    private _router: Router
+  ) {}
   ngOnInit() {
-    
-  
-    this.presentLoading();
-    this.ReturnContentPost();
-
+    this.presentLoading()
+    this.ReturnContentPost()
   }
 
   doRefresh(event) {
-    
-    console.log('Begin async operation');
-     this.ReturnContentPost();
+    console.log("Begin async operation");
+    this.ReturnContentPost();
     setTimeout(() => {
-      console.log('Async operation has ended');
+      console.log("Async operation has ended");
       event.target.complete();
     }, 2000);
   }
   async presentLoading() {
     const loading = await this.loadingController.create({
-      message: 'Please wait...',
-      duration: 2000
+      message: "Please wait...",
+      duration: 2000,
     });
     await loading.present();
 
     const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!');
-  }
-
+    console.log("Loading dismissed!");
+  };
 
   public contentList?: IContentPost[] = [];
-  public contentList2?= [];
-  public url = []
+  public contentList2? = [];
+  public url = [];
 
   public lists = [];
 
@@ -83,40 +74,31 @@ export class HomePage  implements OnInit{
   public followCountreusltu: string;
   public _profileImage_1: string;
 
-
-
   IsUserAutenicated() {
-    this._AccountService.IsUserAuthenticatedService(window.localStorage.getItem("_user1")).subscribe((resposne) => {
-      if (resposne == true) {
-        this._profileImage_1 = window.localStorage.getItem("_pI1");
+    this._AccountService
+      .IsUserAuthenticatedService(window.localStorage.getItem("_user1"))
+      .subscribe((resposne) => {
+        if (resposne == true) {
+          this._profileImage_1 = window.localStorage.getItem("_pI1");
 
-        this.ReturnContentPost();
-      }
-      else {
+          this.ReturnContentPost();
+        } else {
+          this._profileImage_1 = window.localStorage.getItem("_pI1");
 
-        this._profileImage_1 = window.localStorage.getItem("_pI1");
-
-        this.ReturnContentPost();
-        this._router.navigateByUrl('/login');
-
-
-      }
-    })
-
+          this.ReturnContentPost();
+          this._router.navigateByUrl("/login");
+        }
+      });
   }
   returnImg(userid: any) {
-
     return this._AccountService.S_GetUserInfoByID(userid).subscribe((img) => {
       img.profileImageURL;
     });
-
-
   }
   public imgUser: string;
   //return user info by its Id
   GetUserInfoB(userId: string): any {
     return this._AccountService.S_GetUserInfoByID(userId).subscribe((data) => {
-
       if (data != undefined) {
         //reciver name
         //this.imgUser = data.profileImageURL
@@ -125,32 +107,23 @@ export class HomePage  implements OnInit{
     });
   }
   ReturnContentPost() {
-    
-   
+    return this._contentPost.ReturnAllContentService().subscribe(
+      (data) => {
+        for (var i in data) {
+          this.GetUserInfoB(data[i].posterReferanceId);
+          data[i]._posterProfileImageUrl = this.imgUser;
+          data[i]._conmentLenght = data[i]._comments.length;
+          this.contentList2.push(data[i]);
+        }
 
-    return this._contentPost.ReturnAllContentService().subscribe((data) => {
-      for (var i in data) 
-      {
-        
-       
-        this.GetUserInfoB(data[i].posterReferanceId);
-        data[i]._posterProfileImageUrl = this.imgUser;
-        data[i]._conmentLenght = data[i]._comments.length;
-        this.contentList2.push(data[i]);
-      }
-     
-      this.contentList2 = data;
-
-    },
-      error => {
+        this.contentList2 = data;
+      },
+      (error) => {
         return console.log(error);
-      });
-
-
-
+      }
+    );
   }
   runspiner() {
-
     document.getElementById("myspiner2").remove();
     // this.spinType = 'indeterminate';
   }
@@ -158,119 +131,72 @@ export class HomePage  implements OnInit{
   DeleteAllContentPost() {
     this._contentPost.DeleAllContentPostService().subscribe((da) => {
       console.log(da);
-
-    });
-  }
+    })
+  };
   getId(ids: string) {
     alert("test " + ids);
-  }
+  };
   myFunction() {
     var element = document.getElementById("myDIV");
     element.classList.toggle("mystyle");
-  }
-  leaveComment(commentForm: NgForm, ids: string, values: string) {
+  };
 
+  likeThisContent(contentId: string) {
+    console.log("conent id : " + contentId);
     if (window.localStorage.getItem("_user1") == undefined) {
-      alert("Login required!")
+      alert("Login required!");
+    } else {
+      this._contentPost
+        .PostLikeToTheContent(window.localStorage.getItem("_user1"), contentId)
+        .subscribe((response) => {
+          this.CountResult = response;
+          document.getElementById(contentId).innerText = response + " likes";
+          console.log("count result : " + response);
+        });
     }
-    else {
-
-      this.GetUserInfoB(window.localStorage.getItem("_user1"));
-
-      // alert("test " + ids);
-      // document.getElementById("").
-
-      console.log("usre Id " + window.localStorage.getItem("_user1"));
-      console.log("clickc" + this.tesId);
-
-      return this._contentPost.PostCommentService(ids, window.localStorage.getItem("_user1"), commentForm.value.comment).subscribe((response) => {
-        if (response == true) {
-          this.createElementForComment(commentForm.value.comment, ids, values);
-          this.comment = null;
-        }
-      });
-    }
-
-
-
-  }
-  likeThisContent(contentId: string)
-   {
-     console.log("conent id : " + contentId)
-    if (window.localStorage.getItem("_user1") == undefined) {
-      alert("Login required!")
-    }
-    else {
-
-
-
-      this._contentPost.PostLikeToTheContent(window.localStorage.getItem("_user1"), contentId).subscribe((response) => {
-        this.CountResult = response;
-        document.getElementById(contentId).innerText = response + " likes";
-        console.log("count result : " + response);
-      });
-    }
-
-  }
-  likeThisComment(commentId: string) {
-
-    alert("like comment id :" + commentId)
   }
   followThisContentPoster(followedId: string) {
-
     if (window.localStorage.getItem("_user1") == undefined) {
-      alert("Login required!")
+      alert("Login required!");
+    } else {
+      this._contentPost
+        .PostFollowService(window.localStorage.getItem("_user1"), followedId)
+        .subscribe((respone) => {
+          this.followCountreusltu = respone + "followers";
+          // alert( "follwo this user id :" + respone)
+          console.log("followr count " + respone);
+          document.getElementById(followedId).innerHTML =
+            respone + " followers";
+        });
     }
-    else {
-
-      this._contentPost.PostFollowService(window.localStorage.getItem("_user1"), followedId).subscribe((respone) => {
-        this.followCountreusltu = respone + "followers";
-        // alert( "follwo this user id :" + respone)
-        console.log("followr count " + respone);
-        document.getElementById(followedId).innerHTML = respone + " followers";
-      });
-    }
-
-
-
-
-
-  }
-  ReplayToTheComment(commentId: string, replayText: string) {
-
-
-    if (window.localStorage.getItem("_user1") == undefined) {
-      alert("Login required!")
-    }
-    else {
-
-      // alert("Replay functon called :  "+ commentId + "Replay text  : " + replayText);
-
-      return this._contentPost.PostReplayForCommentServce(window.localStorage.getItem("_user1"), commentId, replayText).subscribe();
-    }
-
-
   }
   //create element for live comment
-  createElementForComment(commentText: string, parantelemetnId: string, values: string) {
-
-
+  createElementForComment(
+    commentText: string,
+    parantelemetnId: string,
+    values: string
+  ) {
     var realParrent = document.getElementById(values);
-    // var newDiv = document.createElement("div"); 
+    // var newDiv = document.createElement("div");
     var paremet = document.createElement("div");
-    paremet.setAttribute("style", "width:100%")
-
+    paremet.setAttribute("style", "width:100%");
 
     ////paremet.id= "commendiv";
     var dhr = document.createElement("hr");
     var dUL = document.createElement("ul");
-    dUL.setAttribute("style", "width:100%; padding:0%")
+    dUL.setAttribute("style", "width:100%; padding:0%");
 
     var dliImage = document.createElement("li");
-    dliImage.setAttribute("style", "list-style:none; vertical-align: 0%; width:10%;padding:1%;display: inline-block");
+    dliImage.setAttribute(
+      "style",
+      "list-style:none; vertical-align: 0%; width:10%;padding:1%;display: inline-block"
+    );
 
     var dliComment = document.createElement("li");
-    dliComment.setAttribute("style", "display: inline-block;list-style:none;vertical-align: 0%; width:90%, padding:1%");
+    dliComment.setAttribute(
+      "style",
+      "display: inline-block;list-style:none;vertical-align: 0%; width:90%, padding:1%"
+    );
 
     dUL.appendChild(dliImage);
     dUL.appendChild(dliComment);
@@ -283,19 +209,20 @@ export class HomePage  implements OnInit{
 
     dliImage.appendChild(dImage);
 
-
-    var dp = document.createElement('p');
+    var dp = document.createElement("p");
     dp.innerHTML = commentText;
-    dp.setAttribute("style", "width:100%;padding:1%;word-wrap: break-word;vertical-align: 0%");
+    dp.setAttribute(
+      "style",
+      "width:100%;padding:1%;word-wrap: break-word;vertical-align: 0%"
+    );
 
     dliComment.appendChild(dp);
-
 
     paremet.appendChild(dUL);
 
     realParrent.appendChild(paremet);
 
-    //document.body.appendChild(paremet);  
+    //document.body.appendChild(paremet);
   }
   thisUserInfo(id: string) {
     //alert(id);
@@ -303,22 +230,40 @@ export class HomePage  implements OnInit{
     //this._router.navigate["/user"]
     //alert("test");
     window.localStorage.setItem("_user2", id);
-    this._router.navigate(['/publicpro']);
-  
+    this._router.navigate(["/publicpro"]);
   }
 
-  OnComment(id: string)
-  {
-       window.localStorage.setItem("_contentId",id)
-       console.log(id);
-      //this._router.navigateByUrl("/tabs/comments")
+  OnComment(content: IContentPost) {
+    window.localStorage.setItem("_cp_Id", content.contentPostId);
+    window.localStorage.setItem("_cp_up_img_url", content._UserProfileImageUrl);
+    window.localStorage.setItem("_cp_n", content._posterName);
+    window.localStorage.setItem(
+      "_cp_followrs",
+      content._countContentPosterFollowrs + "folowers"
+    );
+    window.localStorage.setItem("_cp_header", content.articleHeader);
+    window.localStorage.setItem(
+      "_cp_description",
+      content.articleOrDescription
+    );
+    window.localStorage.setItem(
+      "_cp_contnet_img_url",
+      content._ContentImageURLs[0]
+    );
+    window.localStorage.setItem(
+      "_cp_likes",
+      content._countContentLikes + " likes"
+    );
+    window.localStorage.setItem("_cp_comment", "comment");
+    window.localStorage.setItem(
+      "_cp_follower",
+      content._countContentPosterFollowrs + " follow"
+    );
+    window.localStorage.setItem("_cp_cpType", content._ContentType);
+    window.localStorage.setItem("_cp_comment_count", content._conmentLenght);
   }
-  OnUserImage(id)
-  {
+  OnUserImage(id) {
     console.log(id);
-     window.localStorage.setItem("_user2", id);
-    
+    window.localStorage.setItem("_user2", id);
   }
-
-  
 }

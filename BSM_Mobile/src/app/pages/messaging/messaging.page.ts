@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { IMessage } from 'src/app/interfaces/imessage';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
 import { MessagingService } from 'src/app/services/messaging.service';
+import { IonInput } from '@ionic/angular';
 
 @Component({
   selector: 'app-messaging',
@@ -11,6 +12,10 @@ import { MessagingService } from 'src/app/services/messaging.service';
   styleUrls: ['./messaging.page.scss'],
 })
 export class MessagingPage implements OnInit {
+  
+  @ViewChild('myMessage',null) myMessage: IonInput; 
+  
+  
   public selfId: string;
   TextMessage: string
   SenderID: string;
@@ -20,24 +25,28 @@ export class MessagingPage implements OnInit {
   public AllLogeedUsers: any;
   public myFomr: NgForm;
   public _messages: IMessage[];
-
   public message: string[];
- 
-
-  
 
   constructor(private _MessageService: MessagingService, private dataService: DataService, private _router: Router) { }
 
 
   ngOnInit() {
  
+    this.showKeybord();
+    
     this.contactName = window.localStorage.getItem("_contactName");
     this.contactId = window.localStorage.getItem("_contactId");
     this.contatImage = window.localStorage.getItem("_contactImage")
     this.dataService.MSourceReciver.subscribe(message => this.message = message)
     //this.Run();
   }
-
+  
+  showKeybord()
+  {
+     setTimeout(()=>{
+        this.myMessage.setFocus();
+     }, 300)
+  }
   CloseConversatin() {
 
     var CurreintUrl = this._router.url;

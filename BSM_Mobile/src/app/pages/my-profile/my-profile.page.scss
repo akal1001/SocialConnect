@@ -1,8 +1,9 @@
 .profileImage
 {
-    width: 125px;
-    height: 125px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
+    vertical-align: center;
    
 }
 .box{
@@ -13,4 +14,11 @@
     text-transform: capitalize;
     font-style: italic;
     
+}
+ion-grid{
+    padding: 0em;
+}
+ion-col{
+    //border: 1px solid red;
+    text-align: center;
 }

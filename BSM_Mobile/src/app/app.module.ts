@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from 'angularfire2';
 import {AngularFireStorage} from 'angularfire2/storage';
-
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +27,9 @@ import {AngularFireStorage} from 'angularfire2/storage';
     StatusBar,
     SplashScreen,
     AngularFireStorage,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+   
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Keyboard
   ],
   bootstrap: [AppComponent]
 })

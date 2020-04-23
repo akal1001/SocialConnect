@@ -16,6 +16,15 @@ import { OnlineService } from 'src/app/services/online.service';
   styleUrls: ['./post.page.scss'],
 })
 export class PostPage implements OnInit, IContentPost {
+  _UserProfileImageUrl?: any;
+  _posterProfileImageUrl?: any;
+  _posterName?: string;
+  _ContentType?: string;
+  _ContentImageURLs?: string[];
+  _countContentPosterFollowrs?: any;
+  _conmentLenght?: any;
+  _comments?: import("../../interfaces/icomment").IComment[];
+  _countComment: any;
 
   contentPostId?: any;
   posterReferanceId: any;
@@ -23,7 +32,7 @@ export class PostPage implements OnInit, IContentPost {
   articleOrDescription?: any;
   _DateTime?: string;
   articleHeader?: string;
-
+_countContentLikes?:any;
 
 
 

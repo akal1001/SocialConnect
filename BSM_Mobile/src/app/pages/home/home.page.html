@@ -3,7 +3,11 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>BSM</ion-title>
+        <ion-title style="color: #00cc99;">BSM</ion-title>
+        <ion-item lines="none" style="float: right;">
+             <ion-icon routerLink="/search" style="float: right; color:gray" name="Search"></ion-icon>
+           </ion-item>
+       
     </ion-toolbar>
 </ion-header>
 
@@ -12,7 +16,7 @@
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
     <ion-grid fixed style="background-color:#e8f0f0; padding: 0%;">
-        <ion-row *ngFor="let content of contentList2" style="background-color: white; border-bottom: 1px solid lightgray;border-top: 1px solid lightgray;margin-bottom: 10px;">
+        <ion-row *ngFor="let content of contentList2" style="background-color: white;margin-bottom: 10px;padding: 0%;">
 
             <ion-col class="contentHeader" size="2" (click)="OnUserImage(content.posterReferanceId)"
                 routerLink="/profile/{{content.posterReferanceId}}">
@@ -26,7 +30,8 @@
           
             <ion-col  class="contentBody"  size="12" *ngIf="content.articleOrDescription !=null">
                 
-                <p> <b> {{content?.articleHeader}}</b> {{content?.articleOrDescription}}</p>
+                <p> <b> {{content?.articleHeader}}</b> 
+                    {{content?.articleOrDescription}}</p>
             </ion-col>
             <ion-col  class="contentBody" size="12" *ngIf="content?._ContentType === 'image'">
                 <img [src]="content._ContentImageURLs[0]">
@@ -36,28 +41,27 @@
                     <source src="{{content._ContentImageURLs[0]}}#t=00:00:01" type="video/mp4">
                 </video>
             </ion-col>
-            <ion-col size="12">
-
-            </ion-col>
-            <ion-col id={{content.contentPostId}} class="eachFooter" size="4" (click)="likeThisContent(content.contentPostId)">
+          
+            <ion-row class="eachFooter">
+                <ion-col id={{content.contentPostId}} size="4" (click)="likeThisContent(content.contentPostId)">
                
                     {{content._countContentLikes}} like
                 
             </ion-col>
-            <ion-col class="eachFooter" size="4" (click)="followThisContentPoster(content.posterReferanceId)">
-                
-                    follow
-            
-            </ion-col>
-            <ion-col class="eachFooter" size="4" (click)="OnComment(content.contentPostId)" routerLink="/comments/{{content.contentPostId}}">
+           
+            <ion-col  size="4" (click)="OnComment(content)" routerLink="/comments/{{content.contentPostId}}">
 
               
                     {{content._conmentLenght}} comment
              
             </ion-col>
-            <ion-col size="12">
-
-            </ion-col>
+            <ion-col  size="4" (click)="followThisContentPoster(content.posterReferanceId)">
+                
+                follow
+        
+        </ion-col>
+            </ion-row>
+            
             <!-- test -->
 
         </ion-row>

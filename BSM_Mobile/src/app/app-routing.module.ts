@@ -46,6 +46,18 @@ const routes: Routes = [
   {
     path: 'my-profile/:Id',
     loadChildren: () => import('./pages/my-profile/my-profile.module').then( m => m.MyProfilePageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
+  },
+  {
+    path: 'notification',
+    loadChildren: () => import('./pages/notification/notification.module').then( m => m.NotificationPageModule)
+  },
+  {
+    path: 'post',
+    loadChildren: () => import('./pages/post/post.module').then( m => m.PostPageModule)
   }
  
 

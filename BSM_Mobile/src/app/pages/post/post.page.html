@@ -4,6 +4,9 @@
       <ion-back-button defaultHref="tabs/home"></ion-back-button>
     </ion-buttons>
     <ion-title>post</ion-title>
+    <ion-button color="success" style="float: right; height: 30px;" (click)="UpladFileToFirebase(imageForm)"> 
+      post
+          </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -29,49 +32,56 @@
           <option value="saab">follower</option>
         </select>
       </ion-col>
+      <ion-col>
+                   
+        <h4 style="word-wrap: break-word;">{{articleHeader}}</h4>
+      
+        <p style="word-wrap: break-word;">
+          {{articleOrDescription}}
+          {{articleOrDescription?.length}}
+        </p>
+
+
+        <img [src]="imageUrl" style="width: 100%; height: auto;">
+      </ion-col>
       <ion-col size="12">
-        <form #imageForm="ngForm">
-          
-           
-              <h4 style="word-wrap: break-word;">{{articleHeader}}</h4>
-      
-              <p style="word-wrap: break-word;">
-                {{articleOrDescription}}
-                {{articleOrDescription?.length}}
-              </p>
-      
-      
-              <img [src]="imageUrl" style="width: 100%; height: auto;">
-      
-      
-              <input id="upload_photo" type="file" #Image accept="audio/*;capture=microphone"
-                (change)="handleFileInput($event)">
-      
-           
-              <textarea id='' placeholder="Write a header  for your post" name='articleHeader' [(ngModel)]='articleHeader'
-                type='text'>
-                </textarea>
-              <hr>
-      
-              <textarea style="min-height:100px" matInput placeholder="Write a description or article"
-                name='articleOrDescription' [(ngModel)]='articleOrDescription'></textarea>
-      
-      
-         
-              <h4 id="postedMesage" style="text-transform: uppercase; font-weight: lighter;">
-                {{message}}
-              </h4>
-             
-      
-             
-          
         
-        </form>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <form #imageForm="ngForm">
+          
 
+      
+      
+           
+           
+    <textarea id='' placeholder="Write a header  for your post" name='articleHeader' [(ngModel)]='articleHeader'
+      type='text'>
+      </textarea>
+    <hr>
+
+    <textarea style="min-height:100px" matInput placeholder="Write a description or article"
+      name='articleOrDescription' [(ngModel)]='articleOrDescription'></textarea>
+
+
+
+    <h4 id="postedMesage" style="text-transform: uppercase; font-weight: lighter;">
+      {{message}}
+    </h4>
+   
+
+   
+
+
+</form>
 
 </ion-content>
-<input type="button" value="Post" (click)="UpladFileToFirebase(imageForm)" class="btn btn-success btn-submit"
-style="width: 100%;">
+<ion-footer>
+  <ion-item>
+    <input id="upload_photo" style="width: 80%;" type="file" #Image accept="audio/*;capture=microphone"
+    (change)="handleFileInput($event)">
+   
+  </ion-item>
+ 
+</ion-footer>

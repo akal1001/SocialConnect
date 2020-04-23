@@ -1,0 +1,24 @@
+.profileImage
+{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    vertical-align: center;
+   
+}
+.box{
+    text-align: center;
+    padding: 5%;
+    margin: 1%;
+    border: 1px solid lightgray;
+    text-transform: capitalize;
+    font-style: italic;
+    
+}
+ion-grid{
+    padding: 0em;
+}
+ion-col{
+    //border: 1px solid red;
+    text-align: center;
+}

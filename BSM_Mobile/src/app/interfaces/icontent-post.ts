@@ -12,10 +12,12 @@ export interface IContentPost {
     _posterName?:string;
     _ContentType?:string;
     _ContentImageURLs?:string[];
-    _countContentPosterFollowrs?:number;
-    _countContentLikes?:number;
+    //_ContentImageURL?:string;
+    _countContentPosterFollowrs?:any;
+    _countContentLikes?:any;
     //not maped
-    _conmentLenght?:number;
+    _conmentLenght?:any;
     //not maped
     _comments?:IComment[];
+    _countComment:any;
 }

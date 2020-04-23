@@ -20,17 +20,7 @@ const routes: Routes = [
       },
       
      
-      {
-        path: 'post',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../post/post.module').then(m => m.PostPageModule)
-          }
-        ]
-      },
-      
+    
       {
         path: 'people',
         children: [

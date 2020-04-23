@@ -72,21 +72,8 @@ export class ContentPostService {
        const endpoint = this._Url + "deleThisConternt?contentId=" + contentId;
        this._httpClient.delete<any>(endpoint);
    }
-   //leave a comment to the post
-   PostCommentService(psoteId: string, commenterId: string, comment: string):Observable<boolean>
-    {
-       //localhost:59248/api/content/leaveComment?postedId=ff&commenterId=fff&yourComment=ff
-       console.log("comment serve c calld : " + psoteId + " : " + commenterId + " : " + comment);
-       const commentEndoint = this._Url + "leaveComment?postedId=" + psoteId + "&commenterId=" + commenterId + "&yourComment=" + comment;
-     return  this._httpClient.post<boolean>(commentEndoint, "");
-   }
-   //post replay for the comment
-   PostReplayForCommentServce(replayerId:string, commentId:string, replayText:string):Observable<any>
-   {
-       //public void PostReplay(string replayerId, string commentId, string replayText)
-       const endpoint = this._Url + "postReplay?replayerId=" + replayerId + "&commentId=" + commentId + "&replayText=" + replayText;
-       return this._httpClient.post<any>(endpoint,"");
-   }
+  
+  
    //post like
    PostLikeToTheContent(likerId:string, contentId:string)
    {

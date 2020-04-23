@@ -3,35 +3,29 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="tabs/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>myProfile</ion-title>
+    <ion-title>My Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-grid>
         <ion-row>
-            <ion-col size-md="6" size-sm="12">
-                <img class="imageClass" title="Profile Image" [src]=imageUrl>
+            <ion-col size-md="6" size-sm="12" style="height: 200px; background-color:whitesmoke;">
+              <br>
+                <img class="profileImage" title="Profile Image" [src]=imageUrl>
             </ion-col>
            
-        </ion-row>
-        <ion-row>
-            <ion-col>
-                <input type="file" id="upload_photo" #Image accept="image/*" (change)="handleFileInput($event)" style="display: inline-block;">
-
-                <button (click)="OnSubmit()" style="display: inline-block;" class="btn btn-success btn-submit">Save</button>
+      
+            <ion-col size="12">
+              <ion-item>
+                <input style="width: 80%;" type="file" id="upload_photo" #Image accept="image/*" (change)="handleFileInput($event)">
+                <ion-button style="width: 20%;" (click)="OnSubmit()" color="success" size="small">save</ion-button>
             
+              </ion-item>
+                
             </ion-col>
         </ion-row>
-        <ion-row>
-            <ion-col>
-              <h4>
-                  smaple name sat
-              </h4>
-            </ion-col>
-            
-            
-        </ion-row>
+    
         <ion-row>
             <ion-col>
               about 
@@ -40,7 +34,7 @@
                 actitivey 
               </ion-col>
               <ion-col>
-                prof 
+                Contact 
               </ion-col>
         </ion-row>
     </ion-grid>

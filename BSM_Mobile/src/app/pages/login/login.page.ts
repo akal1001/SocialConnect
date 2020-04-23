@@ -52,7 +52,7 @@ export class LoginPage implements OnInit {
       .subscribe((data) => {
         if (data != null) {
          
-         
+          window.localStorage.clear();
           window.localStorage.setItem("_user1", data[1]);
           window.localStorage.setItem("_name", userForm.value.username);
          window.localStorage.setItem("_pI1", data[2]);

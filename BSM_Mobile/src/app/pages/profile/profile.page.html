@@ -7,47 +7,38 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
   <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <img class="profileImage" title="Profile Image" src='{{profile?.profileImageURL}}'>
-        <h2>
+      <ion-row>
+          <ion-col size-md="6" size-sm="12" style="height: 200px; background-color:whitesmoke;">
+            <br>
+              <img class="profileImage" title="Profile Image" src='{{profile?.profileImageURL}}'>
+          </ion-col>
+         <ion-col size="12">
           {{profile?.userName}}
-        </h2>
+         </ion-col>
+    
+          <ion-col size="12">
+            <ion-item>
+                <ion-button style="width: 30%; float: right;"  color="success" size="small">send request</ion-button>
+          
+            </ion-item>
+              
+          </ion-col>
+      </ion-row>
   
-        <h5>
-          {{profile?.userId}}
-        </h5>
-        <a class="btn" style="color:white; float: right; background-color:#33cc33;" id="" #posterRefId role="button">
-          Sende connection Request
-        </a>
-      </ion-col>
-      <ion-col size="12">
-        <h3>
-          about
-        </h3>
-        <p>
-          {{profile?._about.aboutMe}}
-        </p>
-      </ion-col>
-      <ion-col size="12">
-        <h3>
-          acitivity
-        </h3>
-        <p>
-          {{profile?._about.aboutMe}}
-        </p>
-      </ion-col>
-      <ion-col size="12">
-        <h3>
-          contact
-        </h3>
-        <p>
-          333 333 33333
-        </p>
-      </ion-col>
-    </ion-row>
+      <ion-row>
+          <ion-col>
+            about 
+          </ion-col>
+          <ion-col>
+              actitivey 
+            </ion-col>
+            <ion-col>
+              Contact 
+            </ion-col>
+      </ion-row>
   </ion-grid>
-  
+
 </ion-content>

@@ -30,28 +30,21 @@ export class PeoplePage {
    {
     return  this._account.ReturnAllUsers(window.localStorage.getItem("_user1")).subscribe((data)=>{
       this.users  = data;
-      this.runspiner();
+     
      })
    }
  
  
 
-   //spinner
-   runspiner() {
-
-    document.getElementById("myspiner3").remove();
-    // this.spinType = 'indeterminate';
-  }
 
   ClickConnect(id:string)
   {
-    var element = document.getElementById(id)
-    element.setAttribute("style","color:green; text-transform: capitalize;");
-    element.innerText = "request sent";
+ 
+   
 
     this._connection.PostConnectionRequest(localStorage.getItem("_user1"),id).subscribe(resposne=>
     {
-      //alert("post connectrion request : " + resposne);
+      alert("post connectrion request : " + resposne);
     },
     error => alert(error))
    // alert(id);

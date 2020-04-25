@@ -1,82 +1,69 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>login  </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form #loginForm="ngForm">
+
   
-    <div id="loginPaner">    
-      <div class="panel-body">
-        <div class="form-group">
-          <label>
-            <h5>USERNAME</h5>
-          </label>
-  
-          <input id="txtUsername" name="username" [(ngModel)]="username" type="text" class="form-control"
-            placeholder="username...">
-        </div>
-        <div class="form-group">
-          <label>
-            <h5>PASSWORD</h5>
-          </label>
-          <input id="txtPassword" name="userpassword" [(ngModel)]="userpassword" class="form-control" type="password" placeholder="password...">
-        </div>
-        <div class="form-group">
-          <label>
-            <h6>
-              <a>
-                Forgot Password?
-              </a></h6>
-          </label>
-  
-        </div>
-        <div>
-  
-  
-          <!-- <button (click)="getValueFromLocalStoragte()" class="btn btn-success">get key</button> -->
-          <button (click)="userLogin(loginForm)" class="btn btn-success">Login</button>
-  
-        </div>
-      </div>
-  
-    </div>
-    <div style="text-align: center;">
-        <h4 id="signResult">
-            
-        </h4>
+  <div class="login-logo">
+    <!-- <img src="assets/img/appicon.svg" alt="Ionic logo"> -->
+    <ion-row id="mysponer" style="text-align: center; display: none;">
+      <ion-col size="12">
+          <ion-spinner name="dots"></ion-spinner> <br>
+          loging..
+      </ion-col>
+  </ion-row>
+  </div>
+
+  <form #loginForm="ngForm" novalidate>
+     <ion-list >
+      <ion-item style="text-align: center; color: red;">
+        <ion-label>
+         {{message}}
+        
+        </ion-label>
+     </ion-item>
+     </ion-list>
+    <ion-list>
      
-        </div>
-   
-  
+      <ion-item>
+        <ion-label position="stacked" color="primary">Username</ion-label>
+        <ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-text color="danger">
+        <p [hidden]="username.valid || submitted == false" class="ion-padding-start">
+          Username is required
+        </p>
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Password</ion-label>
+        <ion-input [(ngModel)]="login.userpassword" name="password" type="password" #password="ngModel" required>
+        </ion-input>
+      </ion-item>
+
+      <ion-text color="danger">
+        <p [hidden]="password.valid || submitted == false" class="ion-padding-start">
+          Password is required
+        </p>
+      </ion-text>
+    </ion-list>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="userLogin()" type="submit" expand="block">Login</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="onSignup()" color="light" expand="block">Signup</ion-button>
+      </ion-col>
+    </ion-row>
   </form>
   
   
-  
-  
-  
-  <style>
-    input {
-      height: 50px;
-      -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    }
-  
-    .panel-header {
-      text-align: center;
-  
-    }
-  
-    .panel-header h3 {
-      margin-top: 30px;
-    }
-  
-    #loginPaner {
-      border: none;
-  
-  
-    }
-  </style>
+ 
 </ion-content>

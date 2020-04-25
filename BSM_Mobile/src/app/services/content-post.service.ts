@@ -34,46 +34,16 @@ export class ContentPostService {
    getSingleContenService(cntentId:string) :Observable<IContentPost>
    {
        return this._httpClient.get<IContentPost>(this._Url + "content?id=" + cntentId);
-   }
+   };
 
    //return all user referance id
    ReturnAllContentService(): Observable<IContentPost[]> {
        return this._httpClient.get<IContentPost[]>(this._Url + "GetAllContentsPosts1?userId="+ window.localStorage.getItem(window.localStorage.key(0)));
-   }
-
-   ReturnAllCMyontentService(userPosterId: string): Observable<IContentPost[]> {
-       return this._httpClient.get<IContentPost[]>(this._Url + "GetAllMyContentPost?referanceId=" + userPosterId);
-   }
-   DeleteThisContetPost(contentId:string):Observable<boolean>
-   {
-       //DeleteThis
-       const endpoint = this._Url + "deletethis?contentId="+contentId;
-       return this._httpClient.delete<boolean>(endpoint);
-   }
-
-
-
-
-
-   DeleAllContentPostService(): Observable<any> {
-       const endpoint = this._Url + "deletAllContent";
-       return this._httpClient.delete<any>(endpoint);
-   }
-   DeleAllMyContentPostService(userposterId: string) {
-       const endpoint = this._Url + "deletAllMyContent?contentPosterid=" + userposterId;
-       this._httpClient.delete<any>(endpoint, {
-           params:
-           {
-
-           }
-       });
-   }
+   };
    DeleteThisContentPostService(contentId: string) {
        const endpoint = this._Url + "deleThisConternt?contentId=" + contentId;
        this._httpClient.delete<any>(endpoint);
-   }
-  
-  
+   };
    //post like
    PostLikeToTheContent(likerId:string, contentId:string)
    {

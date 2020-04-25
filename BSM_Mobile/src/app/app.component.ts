@@ -37,4 +37,10 @@ export class AppComponent implements OnInit {
     this.userid = window.localStorage.getItem("_user1");
     });
   }
+
+  logout()
+  {
+    localStorage.clear();
+    
+  }
 }

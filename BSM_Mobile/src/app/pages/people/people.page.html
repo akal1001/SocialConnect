@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-grid>
+    <ion-grid fixed>
         <ion-row >
             <ion-col *ngFor="let item of users" size="6" size-md="6" size-sm="6">
                 <div class="box">
@@ -17,18 +17,14 @@
                    
                 </div>
                 <div class="box">
-                    <ion-label>
+                   
                         {{item.userName}}
-                    </ion-label>
+                    <br>
+                    <ion-button color="success" size="small" #posterRefId (click)="ClickConnect(posterRefId)">
+                        conntect
+                     </ion-button>
                 </div>
-                <div class="box"> 
-             
-                <a class="btn"
-                style="color:gray; text-transform: capitalize; font-weight:normal;border: 1px solid lightgray; padding:2%; padding-top: 1%;"
-                id="{{item.userId}}" #posterRefId (click)="ClickConnect(posterRefId.id)" role="button">
-                conntect
-            </a>
-                </div>
+                
             </ion-col>
         </ion-row>
     </ion-grid>

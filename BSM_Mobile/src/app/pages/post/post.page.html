@@ -11,12 +11,12 @@
 </ion-header>
 
 <ion-content>
-  <div style="margin: 0%;">
-    <p style="height: 0; align-items: center;  text-align: center; visibility: hidden;" id="myspiner234;">
-
-      posting your content...
-    </p>
-  </div>
+  <ion-row id="myuploading" style="text-align: center; margin-top: 50%;display:none;">
+    <ion-col size="12">
+        <ion-spinner name="dots"></ion-spinner> <br>
+        uploading...
+    </ion-col>
+</ion-row>
 
   <ion-grid>
     <ion-row>
@@ -33,16 +33,8 @@
         </select>
       </ion-col>
       <ion-col>
-                   
-        <h4 style="word-wrap: break-word;">{{articleHeader}}</h4>
-      
-        <p style="word-wrap: break-word;">
-          {{articleOrDescription}}
-          {{articleOrDescription?.length}}
-        </p>
-
-
-        <img [src]="imageUrl" style="width: 100%; height: auto;">
+              
+        <img [src]="imageUrl">
       </ion-col>
       <ion-col size="12">
         
@@ -66,9 +58,7 @@
 
 
 
-    <h4 id="postedMesage" style="text-transform: uppercase; font-weight: lighter;">
-      {{message}}
-    </h4>
+  
    
 
    

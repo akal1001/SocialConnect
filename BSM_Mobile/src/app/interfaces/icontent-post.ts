@@ -9,7 +9,7 @@ export interface IContentPost {
     _UserProfileImageUrl?:any;
     _DateTime?: string;
     _posterProfileImageUrl?:any;
-    _posterName?:string;
+    _Username?:string;
     _ContentType?:string;
     _ContentImageURLs?:string[];
     //_ContentImageURL?:string;

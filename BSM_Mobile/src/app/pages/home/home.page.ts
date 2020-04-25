@@ -41,31 +41,22 @@ export class HomePage implements OnInit {
     private _router: Router
   ) {}
   ngOnInit() {
-    this.presentLoading()
+    
     this.ReturnContentPost()
   }
 
   doRefresh(event) {
     console.log("Begin async operation");
-    this.ReturnContentPost();
+   this.ReturnContentPost();
     setTimeout(() => {
       console.log("Async operation has ended");
       event.target.complete();
     }, 2000);
   }
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      message: "Please wait...",
-      duration: 2000,
-    });
-    await loading.present();
 
-    const { role, data } = await loading.onDidDismiss();
-    console.log("Loading dismissed!");
-  };
 
   public contentList?: IContentPost[] = [];
-  public contentList2? = [];
+  public contentList2?:IContentPost[] = [];
   public url = [];
 
   public lists = [];
@@ -109,30 +100,19 @@ export class HomePage implements OnInit {
   ReturnContentPost() {
     return this._contentPost.ReturnAllContentService().subscribe(
       (data) => {
-        for (var i in data) {
-          this.GetUserInfoB(data[i].posterReferanceId);
-          data[i]._posterProfileImageUrl = this.imgUser;
-          data[i]._conmentLenght = data[i]._comments.length;
-          this.contentList2.push(data[i]);
-        }
-
+        var r = data;
+        document.getElementById("mysponer").remove();
         this.contentList2 = data;
       },
       (error) => {
         return console.log(error);
       }
+      
     );
   }
-  runspiner() {
-    document.getElementById("myspiner2").remove();
-    // this.spinType = 'indeterminate';
-  }
-  //delete all content
-  DeleteAllContentPost() {
-    this._contentPost.DeleAllContentPostService().subscribe((da) => {
-      console.log(da);
-    })
-  };
+ 
+  
+  
   getId(ids: string) {
     alert("test " + ids);
   };
@@ -236,7 +216,7 @@ export class HomePage implements OnInit {
   OnComment(content: IContentPost) {
     window.localStorage.setItem("_cp_Id", content.contentPostId);
     window.localStorage.setItem("_cp_up_img_url", content._UserProfileImageUrl);
-    window.localStorage.setItem("_cp_n", content._posterName);
+    window.localStorage.setItem("_cp_n", content._Username);
     window.localStorage.setItem(
       "_cp_followrs",
       content._countContentPosterFollowrs + "folowers"

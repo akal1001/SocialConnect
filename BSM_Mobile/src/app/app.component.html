@@ -22,9 +22,9 @@
              
              <br>
           
-           <p>
+         
             {{username}}
-           </p>
+        
           </ion-menu-toggle>
           <hr>
           <ion-menu-toggle autoHide="false">
@@ -63,10 +63,10 @@
           </ion-menu-toggle>
 
           <ion-menu-toggle autoHide="false">
-            <ion-item routerLink="/notification" button  detail="false">
-              <ion-icon slot="start" name="contact"></ion-icon>
+            <ion-item routerLink="/my-posts" button  detail="false">
+              <ion-icon slot="start" name="posts"></ion-icon>
               <ion-label>
-                contacts
+                my posts
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
@@ -80,24 +80,17 @@
           </ion-list-header>
 
           <ion-menu-toggle autoHide="false">
-            <ion-item routerLink="/login" routerLinkActive="active" routerDirection="root" detail="false">
+            <ion-item (click)="logout()" routerLink="/login" routerLinkActive="active" routerDirection="root" detail="false">
               <ion-icon slot="start" name="log-in"></ion-icon>
               <ion-label>
-                Login
+                logout
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
 
          
 
-          <ion-menu-toggle autoHide="false">
-            <ion-item routerLink="/signup" routerLinkActive="active" routerDirection="root" detail="false">
-              <ion-icon slot="start" name="person-add"></ion-icon>
-              <ion-label>
-                Signup
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+        
 
        
         </ion-list>

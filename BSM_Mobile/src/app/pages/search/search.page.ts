@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonInput } from '@ionic/angular';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchPage implements OnInit {
 
-  constructor() { }
+
+  @ViewChild('mySearchInput',null) mySearchInput: IonInput; 
+ 
+  constructor( public keyboard: Keyboard,) { }
 
   ngOnInit() {
+    this.showKeybord();
   }
 
+  showKeybord()
+  {
+    setTimeout(()=>{
+      this.mySearchInput.setFocus()
+    },300)
+  }
 }

@@ -51,7 +51,7 @@ export class CommentsPage implements OnInit {
     this.singleContent = {
       contentPostId:window.localStorage.getItem("_cp_Id"),
       _UserProfileImageUrl:window.localStorage.getItem("_cp_up_img_url"),
-      _posterName:window.localStorage.getItem("_cp_n"),
+      _Username:window.localStorage.getItem("_cp_n"),
       _countContentPosterFollowrs:localStorage.getItem("_cp_followrs"),
       articleHeader:localStorage.getItem("_cp_header"),
       articleOrDescription:localStorage.getItem("_cp_description"),

@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="tabs/home"></ion-back-button>
+        </ion-buttons>
+        <ion-title>myPosts</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid fixed style="background-color:#e8f0f0; padding: 0%;">
+        <ion-row id={{content.contentPostId}} *ngFor="let content of myContents" style="background-color: white;margin-bottom: 10px;padding: 0%;">
+
+            <ion-col class="contentBody" size="12" *ngIf="content?.articleOrDescription !=null">
+
+                <p> <b> {{content?.articleHeader}}</b>
+                    {{content?.articleOrDescription}}</p>
+            </ion-col>
+            <ion-col class="contentBody" size="12" *ngIf="content?._ContentType === 'image'">
+                <img [src]="content._ContentImageURLs[0]">
+            </ion-col>
+            <ion-col class="contentBody" size="12" *ngIf="content?._ContentType === 'video'">
+                <video style="width: 100%; min-height:0;  text-align: center;" controls preload="auto">
+                    <source src="{{content._ContentImageURLs[0]}}#t=00:00:01" type="video/mp4">
+                </video>
+            </ion-col>
+
+            <ion-row class="eachFooter">
+                <ion-col id={{content.contentPostId}} size="4">
+
+                    {{content._countContentLikes}} like
+
+                </ion-col>
+
+                <ion-col size="4" routerLink="/comments/{{content.contentPostId}}">
+
+
+                    {{content._conmentLenght}} comment
+
+                </ion-col>
+                <ion-col size="4" style="padding-top: 0%;">
+
+                    <ion-button color="success" size="small" (click)="DeleteThis(content.contentPostId)">
+                        <ion-label>
+                            delete
+                        </ion-label>
+
+                    </ion-button>
+
+                </ion-col>
+            
+            </ion-row>
+     
+            <!-- test -->
+
+        </ion-row>
+    </ion-grid>
+</ion-content>

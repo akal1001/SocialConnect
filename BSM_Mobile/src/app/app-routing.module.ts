@@ -11,6 +11,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./pages/tabs-pages/tabs-pages.module').then(m => m.TabsPagesPageModule)
   },
+
   {
     path: 'signup',
     loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule)
@@ -20,12 +21,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/myconnections/myconnections.module').then( m => m.MyconnectionsPageModule)
   },
   {
-    path: 'connectionrequester',
-    loadChildren: () => import('./pages/connectionrequester/connectionrequester.module').then( m => m.ConnectionrequesterPageModule)
+    path: 'connectionrequest-I-recived',
+    loadChildren: () => import('./pages/connectionrequest-I-recived/connectionrequester.module').then( m => m.ConnectionrequesterPageModule)
   },
   {
-    path: 'connectionsender',
-    loadChildren: () => import('./pages/connectionsender/connectionsender.module').then( m => m.ConnectionsenderPageModule)
+    path: 'connectionrequest-I-send',
+    loadChildren: () => import('./pages/connectionrequest-I-send/connectionsender.module').then( m => m.ConnectionsenderPageModule)
   },
   {
     path: 'contacts',

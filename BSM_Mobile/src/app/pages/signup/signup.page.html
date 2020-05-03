@@ -10,28 +10,23 @@
 <ion-content>
 
   <div class="signup-logo">
-    <!-- <img src="assets/img/appicon.svg" alt="Ionic Logo"> -->
-    <ion-row id="mysponer" style="text-align: center; display: none;">
-      <ion-col size="12">
-          <ion-spinner name="dots"></ion-spinner> <br>
-          signing up..
-      </ion-col>
-  </ion-row>
+    <br>
+    <br>
+    <img class="profileImage" src="https://firebasestorage.googleapis.com/v0/b/bsmm-2016e.appspot.com/o/0evn8mzqyagr?alt=media" alt="Ionic logo"> 
+  
+  
   </div>
 
   <form #signupForm="ngForm" novalidate>
     <ion-list lines="none">
-      <ion-item style="text-align: center; color: red;">
-        <ion-label>
-         {{message}}
-        
-        </ion-label>
-     </ion-item>
+      <ion-item  style="text-align: center;padding-left: 40%;"> 
+        <ion-spinner id="mysignupspiner" style="text-align: center; display: none;" name="dots"></ion-spinner> 
+       </ion-item>
      </ion-list>
-    <ion-list lines="none">
+    <ion-list >
       <ion-item>
-        <ion-label position="stacked" color="primary">Username</ion-label>
-        <ion-input [(ngModel)]="signup.username" name="username" type="text" #username="ngModel" required>
+        <ion-label position="stacked" color="primary">full name</ion-label>
+        <ion-input [(ngModel)]="signup.username" name="username" maxlength="50" type="text" #username="ngModel" required>
         </ion-input>
       </ion-item>
       <ion-text color="danger">
@@ -42,7 +37,7 @@
 
       <ion-item>
         <ion-label position="stacked" color="primary">email </ion-label>
-        <ion-input [(ngModel)]="signup.useremail" name="username" type="text" #useremail="ngModel" required>
+        <ion-input [(ngModel)]="signup.useremail" name="username" maxlength="50" type="text" #useremail="ngModel" required>
         </ion-input>
       </ion-item>
       <ion-text color="danger">
@@ -53,7 +48,7 @@
 
       <ion-item>
         <ion-label position="stacked" color="primary">Password</ion-label>
-        <ion-input [(ngModel)]="signup.userpassword" name="password" type="password" #password="ngModel" required>
+        <ion-input [(ngModel)]="signup.userpassword" name="password" maxlength="15" type="password" #password="ngModel" required>
         </ion-input>
       </ion-item>
       <ion-text color="danger">
@@ -66,6 +61,14 @@
     <div class="ion-padding">
       <ion-button (click)="userSignup()" type="submit" expand="block">Create</ion-button>
     </div>
+    <ion-list>
+      <ion-item>
+        <ion-label id="lblMessage">
+         {{message}}
+        
+        </ion-label>
+     </ion-item>
+    </ion-list>
   </form>
 
 </ion-content>

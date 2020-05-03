@@ -8,9 +8,18 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+<ion-row id="myconnectionspinner" style="text-align: center; margin-top: 50%;">
+    <ion-col size="12">
+        <ion-spinner name="dots"></ion-spinner> <br>
+        loading..
+    </ion-col>
+</ion-row>
   <ion-grid>
-    <ion-row>
-      <ion-col *ngFor="let item of users" size="6" size-md="6" size-sm="6">
+    <ion-row >
+      <ion-col id={{item.userId}}  size="6" size-md="6" size-sm="6" *ngFor="let item of users">
         <div class="box">
           <img class="profileImage" src="{{item.profileImageURL}}" id="{{item.userId}}"> <br>
         </div>
@@ -21,6 +30,9 @@
           <ion-label>
             {{item.userName}}
           </ion-label>
+          <ion-button color="success" size="small" (click)="RemoveConnection(item.userId)">
+             unconnect
+          </ion-button>
         </div>
 
       </ion-col>

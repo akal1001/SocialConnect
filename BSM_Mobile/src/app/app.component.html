@@ -1,8 +1,10 @@
 <ion-app >
   <ion-split-pane contentId="main-content">
 
-    <ion-menu contentId="main-content">
+    <ion-menu (click)="openFirst()"  contentId="main-content">
       <ion-content>
+
+        
         <ion-list lines="none">
           <ion-list-header>
            BSM
@@ -11,24 +13,24 @@
         </ion-list>
 
         <ion-list  lines="none">
-          <ion-list-header>
-        
-          </ion-list-header>
-          <ion-menu-toggle autoHide="false" style="text-align: center; padding-left: 50px;">
-            
-        
-              <img class="profileImage"  [src]="UserProfile" routerLink="/my-profile/{{userid}}">
-              
-             
-             <br>
           
-         
-            {{username}}
-        
+          
+          <ion-menu-toggle  autoHide="false" style="height: 200px; background-color:whitesmoke;">
+            <br> <br>
+               <ion-item>
+                <img class="profileImage" (click)="refersh()"  [src]="UserProfile" >
+               </ion-item>
+              <ion-item>
+              
+                <ion-label style="text-align: center;"> 
+                  {{username}}
+                </ion-label>
+              </ion-item>
+
           </ion-menu-toggle>
           <hr>
           <ion-menu-toggle autoHide="false">
-            <ion-item routerLink="tabs/home" routerLinkActive="active" routerDirection="root" detail="false">
+            <ion-item routerLink="/home" routerLinkActive="active" routerDirection="root"  detail="false">
               <ion-icon slot="start" name="home"></ion-icon>
               <ion-label>
                 home
@@ -36,28 +38,29 @@
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle autoHide="false">
-            <ion-item routerLink="/myconnections" routerLinkActive="active" routerDirection="root" detail="false">
+            <ion-item routerLink="/myconnections"  detail="false">
               <ion-icon slot="start" name="person"></ion-icon>
               <ion-label>
-                myconnections
+               
+                my connections
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
 
           <ion-menu-toggle autoHide="false">
-            <ion-item routerLink="/connectionrequester" routerLinkActive="active" routerDirection="root" detail="false">
+            <ion-item routerLink="/connectionrequest-I-recived"  detail="false">
               <ion-icon slot="start" name="help"></ion-icon>
               <ion-label>
-                connection requester
+                request you recived
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
           
           <ion-menu-toggle autoHide="false">
-            <ion-item routerLink="/connectionsender" routerLinkActive="active" routerDirection="root" detail="false">
+            <ion-item routerLink="/connectionrequest-I-send"  detail="false">
               <ion-icon slot="start" name="help"></ion-icon>
               <ion-label>
-                connection sender 
+                request you sent
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
@@ -80,7 +83,7 @@
           </ion-list-header>
 
           <ion-menu-toggle autoHide="false">
-            <ion-item (click)="logout()" routerLink="/login" routerLinkActive="active" routerDirection="root" detail="false">
+            <ion-item (click)="logout()"  routerLinkActive="active" routerDirection="root" detail="false">
               <ion-icon slot="start" name="log-in"></ion-icon>
               <ion-label>
                 logout

@@ -58,7 +58,7 @@ export class CommentsPage implements OnInit {
       _ContentType:localStorage.getItem("_cp_cpType"),
       _ContentImageURLs:[localStorage.getItem("_cp_contnet_img_url")],
       _countContentLikes:localStorage.getItem("_cp_likes"),
-      _countComment:localStorage.getItem("_cp_comment_count")
+      _countComments:""
     };
    
   }

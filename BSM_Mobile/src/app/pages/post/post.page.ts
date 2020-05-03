@@ -20,7 +20,7 @@ export class PostPage implements OnInit, IContentPost {
   _countContentPosterFollowrs?: any;
   _conmentLenght?: any;
 
-  _countComment: any;
+  _countComments: any;
 
   contentPostId?: any;
   posterReferanceId: any;
@@ -95,17 +95,14 @@ _countContentLikes?:any;
      
       if (_file != undefined)
       {
-        
-         this.fileType = _file.type.slice(0, 5)
-  
-        // alert(_file.type);
+        this.fileType = _file.type.slice(0, 5)
         this.fileToUpload = null;
         this.afStorage.upload(id, _file).snapshotChanges().pipe(finalize(() => {
   
-          fireRef.getDownloadURL().subscribe((url) => {
+          fireRef.getDownloadURL().subscribe((url) => 
+          {
   
             console.log("dowloded url : " + url);
-  
             this._contentPostService.postContentServce(ngForm.value.ContentPostId,
               ngForm.value.posterReferanceId = window.localStorage.getItem("_user1"),
               ngForm.value.imageRefreanceId,
@@ -125,12 +122,7 @@ _countContentLikes?:any;
               },
                 error => console.log("error" + error)
               );
-           
             console.log(url);
-          
-          
-          
-  
           })
         })
         ).subscribe();

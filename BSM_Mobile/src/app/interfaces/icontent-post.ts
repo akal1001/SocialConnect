@@ -19,5 +19,6 @@ export interface IContentPost {
     _conmentLenght?:any;
     //not maped
     _comments?:IComment[];
-    _countComment:any;
+
+    _countComments:any;
 }

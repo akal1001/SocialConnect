@@ -1,6 +1,14 @@
+.profileImage
+{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    vertical-align: center;
+   
+}
 .login-logo {
     padding: 20px 0;
-    min-height: 200px;
+    min-height: 150px;
     text-align: center;
   }
   
@@ -11,4 +19,13 @@
   .list {
     margin-bottom: 0;
   }
-  
+ 
+  ion-list{
+    //border: 1px solid red;
+  }
+  ion-item{
+   // border: 1px solid green;
+  }
+  ion-input{
+    //border: 1px solid black
+  }

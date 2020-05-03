@@ -20,30 +20,40 @@ export class SignupPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.users.username = '';
-    //this.users.userpassword = '';
-    //this.users.useremail = ''
-  }
-
-  userSignup() {
-    document.getElementById("mysponer").style.display="inline"
    
-    this._accountService.postNewUserService(this.signup.username, this.signup.userpassword, this.signup.useremail).subscribe((data) => 
-    {
-      var respnse = data;
-    
-      console.log("respone data : " + data);
-      if (respnse == true) {
-        document.getElementById("mysponer").remove();
-          this.message ="registration successful"
-      }
-      if (respnse == false) {
-        document.getElementById("mysponer").style.display="none"
-         this.message ="registration NOT successful!"
-      }
-    },
-      errror => console.log(errror)
-    );
   }
 
+  
+  userSignup() 
+  {
+    let mylblmessage = document.getElementById("lblMessage")
+    let mysignupspiner = document.getElementById("mysignupspiner")
+    if(this.signup.username == "" || this.signup.userpassword == "" || this.signup.useremail== "")
+    {
+      this.submitted = true;
+    }
+    else
+    {
+      mysignupspiner.style.display="inline"
+      
+        this._accountService.postNewUserService(this.signup.username, this.signup.userpassword, this.signup.useremail).subscribe((data) => 
+        {
+          var respnse = data;
+        
+          console.log("respone data : " + data);
+          if (respnse == true) {
+            mysignupspiner.style.display="none"
+              mylblmessage.style.color = "green"
+              this.message ="your registration is successful"
+          }
+          if (respnse == false) {
+            mysignupspiner.style.display="none"
+            mylblmessage.style.color = "red"
+            this.message ="registration NOT successful!"
+          }
+        },
+          errror => console.log(errror)
+        );
+      }
+  }
 }

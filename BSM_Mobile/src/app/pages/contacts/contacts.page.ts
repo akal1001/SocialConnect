@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { DataService } from 'src/app/services/data.service';
-import { PeopleService } from 'src/app/services/people.service';
+
 import { NotificationService } from 'src/app/services/notification.service';
+import { ConnectionService } from 'src/app/services/connection.service';
 
 @Component({
   selector: 'app-contacts',
@@ -15,7 +16,7 @@ export class ContactsPage  implements OnInit  {
   public datas2;
   public users: any
   public user2: any;
-  constructor(private _router: Router, private _AccountService: AccountService,  private dataService: DataService, private _connection: PeopleService, private _notificationService: NotificationService, ) { }
+  constructor(private _router: Router, private _AccountService: AccountService,  private dataService: DataService, private _connection: ConnectionService, private _notificationService: NotificationService, ) { }
 
   ngOnInit() {
 

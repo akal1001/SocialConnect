@@ -4,8 +4,7 @@ import { AccountService } from "src/app/services/account.service";
 import { Router } from "@angular/router";
 import { ContentPostService } from "src/app/services/content-post.service";
 import { IContentPost } from "src/app/interfaces/icontent-post";
-import { LoadingController } from "@ionic/angular";
-
+import { LoadingController, Platform } from "@ionic/angular";
 @Component({
   selector: "app-home",
   templateUrl: "./home.page.html",
@@ -28,7 +27,7 @@ export class HomePage implements OnInit {
   comment?: string;
   @Input() testV: any;
 
-  public texts: any;
+  public texts1: any;
   public tesId: any;
 
   public tempData: string[];
@@ -36,23 +35,48 @@ export class HomePage implements OnInit {
   constructor(
     public loadingController: LoadingController,
     private _contentPost: ContentPostService,
-
     private _AccountService: AccountService,
-    private _router: Router
-  ) {}
+    private _router: Router, public platform: Platform
+  ) {
+
+    platform.ready().then(() => {
+
+      if (platform.is('cordova')){
+
+        //Subscribe on pause i.e. background
+        this.platform.pause.subscribe(() => 
+        {
+          
+         
+          alert("posue evet fire")
+        });
+
+        //Subscribe on resume i.e. foreground 
+        this.platform.resume.subscribe(() => {
+          this.texts1= "pose"
+          window['paused'] = 0;
+          
+          alert("resule evet fire")
+        });
+       }
+    });
+  }
   ngOnInit() {
-    
+   
     this.ReturnContentPost()
   }
 
+
   doRefresh(event) {
     console.log("Begin async operation");
-   this.ReturnContentPost();
+    
     setTimeout(() => {
+      this.ReturnContentPost();
       console.log("Async operation has ended");
       event.target.complete();
     }, 2000);
   }
+
 
 
   public contentList?: IContentPost[] = [];
@@ -97,33 +121,35 @@ export class HomePage implements OnInit {
       }
     });
   }
-  ReturnContentPost() {
-    return this._contentPost.ReturnAllContentService().subscribe(
+  ReturnContentPost() 
+  {
+     this._contentPost.ReturnAllContentService().subscribe(
       (data) => {
-        var r = data;
-        document.getElementById("mysponer").remove();
+        
+        document.getElementById("mysponer").style.display="none";
         this.contentList2 = data;
       },
       (error) => {
-        return console.log(error);
+        console.log(error);
       }
       
     );
   }
  
   
-  
-  getId(ids: string) {
-    alert("test " + ids);
-  };
-  myFunction() {
-    var element = document.getElementById("myDIV");
-    element.classList.toggle("mystyle");
-  };
+  changeColor(id)
+  { document.getElementById(id).style.color="#0073ff" 
+    setTimeout(() => 
+    {
+       document.getElementById(id).style.color="gray" 
+    }, 2000);
+  }
 
-  likeThisContent(contentId: string) {
-    console.log("conent id : " + contentId);
-    if (window.localStorage.getItem("_user1") == undefined) {
+  likeThisContent(contentId: string)
+   {
+     this.changeColor(contentId +100)
+    if (window.localStorage.getItem("_user1") == undefined) 
+    {
       alert("Login required!");
     } else {
       this._contentPost
@@ -136,6 +162,7 @@ export class HomePage implements OnInit {
     }
   }
   followThisContentPoster(followedId: string) {
+    this.changeColor(followedId+400);
     if (window.localStorage.getItem("_user1") == undefined) {
       alert("Login required!");
     } else {
@@ -150,10 +177,13 @@ export class HomePage implements OnInit {
         });
     }
   }
+  Share(id)
+  {
+    this.changeColor(id+300)
+  }
   //create element for live comment
   createElementForComment(
     commentText: string,
-    parantelemetnId: string,
     values: string
   ) {
     var realParrent = document.getElementById(values);
@@ -205,10 +235,7 @@ export class HomePage implements OnInit {
     //document.body.appendChild(paremet);
   }
   thisUserInfo(id: string) {
-    //alert(id);
-    //alert("sory not implemented yet!!!");
-    //this._router.navigate["/user"]
-    //alert("test");
+   
     window.localStorage.setItem("_user2", id);
     this._router.navigate(["/publicpro"]);
   }

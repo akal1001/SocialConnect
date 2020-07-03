@@ -9,31 +9,31 @@ import { Observable } from 'rxjs';
 export class NotificationService {
   private _url = environment.baseUrl + "Notifications/";
 
-  private _myId = window.localStorage.getItem("_user1");
+ // private _myId = window.localStorage.getItem("_user1");
 
   constructor(private _httpClient: HttpClient) { }
 
   GetMessageNotificationService(myId: string): Observable<any[]> {
-    return this._httpClient.get<any>(this._url + "getmymessageotification?myid=" + this._myId);
+    return this._httpClient.get<any>(this._url + "getmymessageotification?myid=" + myId);
   }
-  getCountNotification(): Observable<number> {
-    return this._httpClient.get<number>(this._url + "count?myid=" +  this._myId);
+  getCountNotification(myId): Observable<number> {
+    return this._httpClient.get<number>(this._url + "count?myid=" +  myId);
   }
 
   // count non mesage notfication
-  getCountNoneMessageNotification(): Observable<number> {
-    return this._httpClient.get<number>(this._url + "countnonmessagenotfication?myid=" + this._myId);
+  getCountNoneMessageNotification(myId): Observable<number> {
+    return this._httpClient.get<number>(this._url + "countnonmessagenotfication?myid=" + myId);
   }
 
   //count connectionr request 
-  getCountConnectionRequestReciveService(): Observable<number> {
-    return this._httpClient.get<number>(this._url + "countconnectionrequestrecive?myId=" + this._myId);
+  getCountConnectionRequestReciveService(myId:string): Observable<number> {
+    return this._httpClient.get<number>(this._url + "countconnectionrequestrecive?myId=" + myId);
   }
 
   //count like and comment notfication
-  getCountLikeAndCommentNotfication() {
+  getCountLikeAndCommentNotfication(myId: string) {
 
-    return this._httpClient.get<number>(this._url + "count_Likes_Comments?myId=" + this._myId);
+    return this._httpClient.get<number>(this._url + "count_Likes_Comments?myId=" + myId);
   }
 
   // //get post notfciation for any
@@ -62,10 +62,10 @@ export class NotificationService {
   }
 
   //get all notification 
-  Get_llnotficationbyidandtypeServuce() :Observable<any>
+  Get_llnotficationbyidandtypeServuce(myId) :Observable<any>
   {
     
-    return this._httpClient.get<string[]>(this._url + "getallnotficationbyidandtype?myId=" + this._myId);
+    return this._httpClient.get<string[]>(this._url + "getallnotficationbyidandtype?myId=" + myId);
 
   }
 }

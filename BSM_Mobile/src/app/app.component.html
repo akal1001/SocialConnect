@@ -1,5 +1,5 @@
 <ion-app >
-  <ion-split-pane contentId="main-content">
+  <!-- <ion-split-pane contentId="main-content">
 
     <ion-menu (click)="openFirst()"  contentId="main-content">
       <ion-content>
@@ -18,12 +18,12 @@
           <ion-menu-toggle  autoHide="false" style="height: 200px; background-color:whitesmoke;">
             <br> <br>
                <ion-item>
-                <img class="profileImage" (click)="refersh()"  [src]="UserProfile" >
+                <img class="profileImage" (click)="refersh()"  [src]="profileImageUrl" >
                </ion-item>
               <ion-item>
               
                 <ion-label style="text-align: center;"> 
-                  {{username}}
+                  {{myName}}
                 </ion-label>
               </ion-item>
 
@@ -102,8 +102,8 @@
       </ion-content>
     </ion-menu>
 
-    <ion-router-outlet id="main-content"></ion-router-outlet>
+   
 
-  </ion-split-pane>
-
+  </ion-split-pane> -->
+  <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>

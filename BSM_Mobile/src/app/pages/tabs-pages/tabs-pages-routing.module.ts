@@ -19,6 +19,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'account',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../account/account.module').then(m => m.AccountPageModule)
+          }
+        ]
+      },
+      {
         path: 'home',
         children: [
           {
@@ -29,12 +39,24 @@ const routes: Routes = [
         ]
       },
       {
+       
         path: 'people',
         children: [
           {
             path: '',
             loadChildren: () =>
               import('../people/people.module').then(m => m.PeoplePageModule)
+          }
+        ]
+      },
+      {
+        
+        path: 'notification',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../notification/notification.module').then(m => m.NotificationPageModule)
           }
         ]
       },

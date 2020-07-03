@@ -1,34 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  selector: 'app-account',
+  templateUrl: './account.page.html',
+  styleUrls: ['./account.page.scss'],
 })
-export class AppComponent implements OnInit {
-
+export class AccountPage implements OnInit {
   myName:string="";
   myId:string = "";
   profileImageUrl:string = "";
-
- 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar, private _router:Router, private menu: MenuController, private nativeStorage: NativeStorage
-  ) {
-    this.initializeApp();
-  }
+  constructor( private _router:Router, private menu: MenuController, private nativeStorage: NativeStorage
+ ) { }
 
   ngOnInit() {
-    
-    this.nativeStorage.getItem("_userCreditionals").then(
+    this.nativeStorage.getItem("_ucr").then(
       (response) => {
         this.myId = response._userId;
         this.profileImageUrl = response._pI1;
@@ -41,29 +30,6 @@ export class AppComponent implements OnInit {
     );
     console.log("aaa")
   
-
-  }
-
-
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    
-    });
-  }
- openFirst() {
-   console.log('menu opend')
-    
-  }
-
-  openEnd() {
-    this.menu.open('end');
-  }
-
-  openCustom() {
-    this.menu.enable(true, 'custom');
-    this.menu.open('custom');
   }
   logout()
   {
@@ -73,12 +39,12 @@ export class AppComponent implements OnInit {
     this.profileImageUrl = "";
     this._router.navigateByUrl("/login")
   }
-
-  refersh()
+  goToMyProfile()
   {
 
-    this.nativeStorage.getItem("_userCreditionals").then(
+    this.nativeStorage.getItem("_ucr").then(
       (response) => {
+
         this.myId = response._userId;
         this.profileImageUrl = response._pI1;
         this.myName = response._username;
@@ -91,5 +57,4 @@ export class AppComponent implements OnInit {
       }
     );
   }
-
 }

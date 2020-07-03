@@ -5,6 +5,8 @@ import { Router } from "@angular/router";
 import { ContentPostService } from "src/app/services/content-post.service";
 import { IContentPost } from "src/app/interfaces/icontent-post";
 import { LoadingController, Platform } from "@ionic/angular";
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { IUser } from 'src/app/interfaces/iuser';
 @Component({
   selector: "app-home",
   templateUrl: "./home.page.html",
@@ -32,38 +34,53 @@ export class HomePage implements OnInit {
 
   public tempData: string[];
 
+   myId:string = "";
+   profileImageUrl:string = "";
   constructor(
+    private _account: AccountService,
     public loadingController: LoadingController,
     private _contentPost: ContentPostService,
     private _AccountService: AccountService,
-    private _router: Router, public platform: Platform
+    private _router: Router, public platform: Platform, private nativeStorage: NativeStorage
   ) {
 
-    platform.ready().then(() => {
+    // platform.ready().then(() => {
 
-      if (platform.is('cordova')){
+    //   if (platform.is('cordova')){
 
-        //Subscribe on pause i.e. background
-        this.platform.pause.subscribe(() => 
-        {
+    //     //Subscribe on pause i.e. background
+    //     this.platform.pause.subscribe(() => 
+    //     {
           
          
-          alert("posue evet fire")
-        });
+    //       alert("posue evet fire")
+    //     });
 
-        //Subscribe on resume i.e. foreground 
-        this.platform.resume.subscribe(() => {
-          this.texts1= "pose"
-          window['paused'] = 0;
+    //     //Subscribe on resume i.e. foreground 
+    //     this.platform.resume.subscribe(() => {
+    //       this.texts1= "pose"
+    //       window['paused'] = 0;
           
-          alert("resule evet fire")
-        });
-       }
-    });
+    //       alert("resule evet fire")
+    //     });
+    //    }
+    // });
   }
   ngOnInit() {
    
+    this.nativeStorage.getItem("_ucr").then(
+      (response) => {
+        this.myId = response._userId;
+        this.profileImageUrl = response._pI1;
+        console.log("myId : " + this.myId + " \nProfile image Url" +this.profileImageUrl);
+      },
+      (error) => {
+        console.log("error geting data from nativeStorage" + error);
+      }
+    );
+    this.getAllUser();
     this.ReturnContentPost()
+    
   }
 
 
@@ -89,16 +106,18 @@ export class HomePage implements OnInit {
   public followCountreusltu: string;
   public _profileImage_1: string;
 
+  users:IUser;
+
   IsUserAutenicated() {
     this._AccountService
-      .IsUserAuthenticatedService(window.localStorage.getItem("_user1"))
+      .IsUserAuthenticatedService(this.myId)
       .subscribe((resposne) => {
         if (resposne == true) {
-          this._profileImage_1 = window.localStorage.getItem("_pI1");
+          this._profileImage_1 = this.profileImageUrl;
 
           this.ReturnContentPost();
         } else {
-          this._profileImage_1 = window.localStorage.getItem("_pI1");
+          this._profileImage_1 = this.profileImageUrl;
 
           this.ReturnContentPost();
           this._router.navigateByUrl("/login");
@@ -148,12 +167,12 @@ export class HomePage implements OnInit {
   likeThisContent(contentId: string)
    {
      this.changeColor(contentId +100)
-    if (window.localStorage.getItem("_user1") == undefined) 
+    if (this.myId == undefined) 
     {
       alert("Login required!");
     } else {
       this._contentPost
-        .PostLikeToTheContent(window.localStorage.getItem("_user1"), contentId)
+        .PostLikeToTheContent(this.myId, contentId)
         .subscribe((response) => {
           this.CountResult = response;
           document.getElementById(contentId).innerText = response + " likes";
@@ -163,11 +182,11 @@ export class HomePage implements OnInit {
   }
   followThisContentPoster(followedId: string) {
     this.changeColor(followedId+400);
-    if (window.localStorage.getItem("_user1") == undefined) {
+    if (this.myId == undefined) {
       alert("Login required!");
     } else {
       this._contentPost
-        .PostFollowService(window.localStorage.getItem("_user1"), followedId)
+        .PostFollowService(this.myId, followedId)
         .subscribe((respone) => {
           this.followCountreusltu = respone + "followers";
           // alert( "follwo this user id :" + respone)
@@ -181,61 +200,9 @@ export class HomePage implements OnInit {
   {
     this.changeColor(id+300)
   }
-  //create element for live comment
-  createElementForComment(
-    commentText: string,
-    values: string
-  ) {
-    var realParrent = document.getElementById(values);
-    // var newDiv = document.createElement("div");
-    var paremet = document.createElement("div");
-    paremet.setAttribute("style", "width:100%");
-
-    ////paremet.id= "commendiv";
-    var dhr = document.createElement("hr");
-    var dUL = document.createElement("ul");
-    dUL.setAttribute("style", "width:100%; padding:0%");
-
-    var dliImage = document.createElement("li");
-    dliImage.setAttribute(
-      "style",
-      "list-style:none; vertical-align: 0%; width:10%;padding:1%;display: inline-block"
-    );
-
-    var dliComment = document.createElement("li");
-    dliComment.setAttribute(
-      "style",
-      "display: inline-block;list-style:none;vertical-align: 0%; width:90%, padding:1%"
-    );
-
-    dUL.appendChild(dliImage);
-    dUL.appendChild(dliComment);
-    dUL.appendChild(dhr);
-
-    var dImage = document.createElement("img");
-    dImage.setAttribute("style", "width:100%; height:60px;border-radius: 50%");
-    dImage.src = this._profileImage_1;
-    // dImage.src = "https://firebasestorage.googleapis.com/v0/b/testhouse-ff733.appspot.com/o/wkopfemsgj?alt=media";
-
-    dliImage.appendChild(dImage);
-
-    var dp = document.createElement("p");
-    dp.innerHTML = commentText;
-    dp.setAttribute(
-      "style",
-      "width:100%;padding:1%;word-wrap: break-word;vertical-align: 0%"
-    );
-
-    dliComment.appendChild(dp);
-
-    paremet.appendChild(dUL);
-
-    realParrent.appendChild(paremet);
-
-    //document.body.appendChild(paremet);
-  }
+ 
   thisUserInfo(id: string) {
-   
+   //this.nativeStorage.setItem("_user2", id);
     window.localStorage.setItem("_user2", id);
     this._router.navigate(["/publicpro"]);
   }
@@ -271,6 +238,16 @@ export class HomePage implements OnInit {
   }
   OnUserImage(id) {
     console.log(id);
-    window.localStorage.setItem("_user2", id);
+    this.nativeStorage.setItem("_user2", id);
+   // window.localStorage.setItem("_user2", id);
+  }
+
+  getAllUser() {
+    this.nativeStorage.getItem("_ucr").then((data)=>{
+      return this._account.ReturnAllUsers(data._userId).subscribe((data) => {
+        this.users = data;
+      });
+    },error=>console.log("erro native native localStorage" + error))
+    
   }
 }

@@ -3,6 +3,7 @@ import { AccountService } from "src/app/services/account.service";
 import { Router } from "@angular/router";
 import { IUser } from "src/app/interfaces/iuser";
 import { NavController } from '@ionic/angular';
+import { NativeStorage } from "@ionic-native/native-storage/ngx";
 
 @Component({
   selector: "app-login",
@@ -22,7 +23,7 @@ export class LoginPage implements OnInit {
 
   constructor(
     private _accountService: AccountService,
-    private _router: Router,public navCtrl: NavController
+    private _router: Router,public navCtrl: NavController, private nativeStorage: NativeStorage
   ) {}
 
   ngOnInit() {
@@ -50,11 +51,21 @@ export class LoginPage implements OnInit {
             {
               this.message =null;
               document.getElementById("myloginspiner").style.display="none"
-              window.localStorage.clear();
-              window.localStorage.setItem("_user1", data[1]);
-              window.localStorage.setItem("_name", this.login.username);
-              window.localStorage.setItem("_pI1", data[2]);
-  
+              this.nativeStorage
+              .setItem("_ucr", {
+                _username: this.login.username,
+                _userId:data[1],
+                _pI1: data[2]
+              })
+              .then(
+                () => {
+                  console.log("creditional stored to nativeStorage");
+                },
+                (error) => {
+                  console.error("Error nativeStorage !", error);
+                }
+              );
+
               this._router.navigateByUrl("/tabs/home");
               
             } else {

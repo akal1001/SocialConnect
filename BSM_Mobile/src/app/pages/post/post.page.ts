@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 import { ContentPostService } from 'src/app/services/content-post.service';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-post',
@@ -53,7 +54,7 @@ _countContentLikes?:any;
 
   public message?: any;
   public _profileImage_1: any;
-  constructor(private _contentPostService: ContentPostService, private afStorage: AngularFireStorage) 
+  constructor(private _contentPostService: ContentPostService, private afStorage: AngularFireStorage, private nativeStorage: NativeStorage) 
   {
 
   }
@@ -92,60 +93,65 @@ _countContentLikes?:any;
       const id = Math.random().toString(36).substring(2);
       const fireRef = this.afStorage.ref(id);
       var _file = this.fileToUpload;
-     
-      if (_file != undefined)
-      {
-        this.fileType = _file.type.slice(0, 5)
-        this.fileToUpload = null;
-        this.afStorage.upload(id, _file).snapshotChanges().pipe(finalize(() => {
-  
-          fireRef.getDownloadURL().subscribe((url) => 
-          {
-  
-            console.log("dowloded url : " + url);
-            this._contentPostService.postContentServce(ngForm.value.ContentPostId,
-              ngForm.value.posterReferanceId = window.localStorage.getItem("_user1"),
-              ngForm.value.imageRefreanceId,
-              ngForm.value.articleOrDescription,
-              ngForm.value._DateTime,
-              url,
-              ngForm.value.articleHeader,
-              this.fileType)
-  
-              .subscribe((data) => {
-               
-                 if(data==true)
 
-                 {
-                  document.getElementById("myuploading").style.display="none"
-                 }
-              },
-                error => console.log("error" + error)
-              );
-            console.log(url);
-          })
-        })
-        ).subscribe();
-      }
-      else {
-        this._contentPostService.postContentServce(ngForm.value.ContentPostId,
-          ngForm.value.posterReferanceId = window.localStorage.getItem("_user1"),
-          ngForm.value.imageRefreanceId,
-          ngForm.value.articleOrDescription,
-          ngForm.value._DateTime, "", ngForm.value.articleHeader, this.fileType)
-  
-          .subscribe((data) => {
-          
-            if(data==true)
+      this.nativeStorage.getItem("_ucr").then((myId)=>{
 
+        if (_file != undefined)
+        {
+          this.fileType = _file.type.slice(0, 5)
+          this.fileToUpload = null;
+          this.afStorage.upload(id, _file).snapshotChanges().pipe(finalize(() => {
+    
+            fireRef.getDownloadURL().subscribe((url) => 
             {
-             document.getElementById("myuploading").style.display="none"
-            }
+    
+              console.log("dowloded url : " + url);
+              this._contentPostService.postContentServce(ngForm.value.ContentPostId,
+                ngForm.value.posterReferanceId = myId._userId,
+                ngForm.value.imageRefreanceId,
+                ngForm.value.articleOrDescription,
+                ngForm.value._DateTime,
+                url,
+                ngForm.value.articleHeader,
+                this.fileType)
+    
+                .subscribe((data) => {
+                 
+                   if(data==true)
   
-          },
-            error => console.log("error" + error)
-          );
-      }
+                   {
+                    document.getElementById("myuploading").style.display="none"
+                   }
+                },
+                  error => console.log("error" + error)
+                );
+              console.log(url);
+            })
+          })
+          ).subscribe();
+        }
+        else {
+          this._contentPostService.postContentServce(ngForm.value.ContentPostId,
+            ngForm.value.posterReferanceId = myId._userId,
+            ngForm.value.imageRefreanceId,
+            ngForm.value.articleOrDescription,
+            ngForm.value._DateTime, "", ngForm.value.articleHeader, this.fileType)
+    
+            .subscribe((data) => {
+            
+              if(data==true)
+  
+              {
+               document.getElementById("myuploading").style.display="none"
+              }
+    
+            },
+              error => console.log("error" + error)
+            );
+        }
+      },error=>console.log("error native localStorage " + error))
+     
+     
   
     }
     else{

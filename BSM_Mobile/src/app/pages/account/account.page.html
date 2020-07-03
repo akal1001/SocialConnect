@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/home"></ion-back-button>
+  </ion-buttons>
+    <ion-title>account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none">
+    <ion-list-header>
+     BSM
+    </ion-list-header>
+
+  </ion-list>
+
+  <ion-list  lines="none">
+    
+    
+    <ion-menu-toggle  autoHide="false" style="height: 200px; background-color:whitesmoke;">
+      <br> <br>
+         <ion-item>
+          <img class="profileImage" (click)="goToMyProfile()"  [src]="profileImageUrl" >
+         </ion-item>
+        <ion-item>
+        
+          <ion-label style="text-align: center;"> 
+            {{myName}}
+          </ion-label>
+        </ion-item>
+
+    </ion-menu-toggle>
+    <hr>
+    <ion-menu-toggle autoHide="false">
+      <ion-item routerLink="tabs/home" routerLinkActive="active" routerDirection="root"  detail="false">
+        <ion-icon slot="start" name="home"></ion-icon>
+        <ion-label>
+          home
+        </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle autoHide="false">
+      <ion-item routerLink="/myconnections"  detail="false">
+        <ion-icon slot="start" name="person"></ion-icon>
+        <ion-label>
+         
+          my connections
+        </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+
+    <ion-menu-toggle autoHide="false">
+      <ion-item routerLink="/connectionrequest-I-recived"  detail="false">
+        <ion-icon slot="start" name="help"></ion-icon>
+        <ion-label>
+          request you recived
+        </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    
+    <ion-menu-toggle autoHide="false">
+      <ion-item routerLink="/connectionrequest-I-send"  detail="false">
+        <ion-icon slot="start" name="help"></ion-icon>
+        <ion-label>
+          request you sent
+        </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+
+    <ion-menu-toggle autoHide="false">
+      <ion-item routerLink="/my-posts" button  detail="false">
+        <ion-icon slot="start" name="posts"></ion-icon>
+        <ion-label>
+          my posts
+        </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+
+    <ion-tab-button routerLink="/contacts">
+      <ion-icon size="small" name="list"></ion-icon>
+      <ion-label>contacts</ion-label>
+    </ion-tab-button>
+    
+
+  </ion-list>
+
+  <ion-list  lines="none">
+    <ion-list-header>
+      Account
+    </ion-list-header>
+
+    <ion-menu-toggle autoHide="false">
+      <ion-item (click)="logout()"  routerLinkActive="active" routerDirection="root" detail="false">
+        <ion-icon slot="start" name="log-in"></ion-icon>
+        <ion-label>
+          logout
+        </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+
+   
+
+  
+
+ 
+  </ion-list>
+</ion-content>

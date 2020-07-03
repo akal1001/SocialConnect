@@ -63,6 +63,10 @@ const routes: Routes = [
   {
     path: 'my-posts',
     loadChildren: () => import('./pages/my-posts/my-posts.module').then( m => m.MyPostsPageModule)
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./pages/account/account.module').then( m => m.AccountPageModule)
   }
  
 

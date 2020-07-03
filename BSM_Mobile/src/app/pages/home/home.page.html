@@ -1,8 +1,8 @@
 <ion-header>
     <ion-toolbar color="green">
-        <ion-buttons slot="start">
+        <!-- <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
-        </ion-buttons>
+        </ion-buttons> -->
         <ion-title style="color: #00cc99;">BSM </ion-title>
         <!-- <ion-button size="small" (click)="ReturnContentPost()"></ion-button> -->
         <ion-item lines="none" style="float: right;">
@@ -25,8 +25,34 @@
 
 
 
-    <ion-grid fixed style="background-color:lightgray; padding: 0%;">
-        
+    <ion-grid fixed style="padding: 0%; background-color: lightgray;">
+
+        <ion-row>
+          
+            <ion-col *ngIf="users!= null" size="12">
+
+                <ion-segment scrollable style="border-radius: 0%; width: 100%; padding: 0%; margin: 0%; background-color: lightgray;">
+
+                    <div id="{{item?.userId}}" class="wraper" *ngFor="let item of users">
+                        <div class="box">
+                            <img class="profileImage2" src="{{item?.profileImageURL}}" id="{{item?.userId}}" (click)="OnUserImage(item?.userId)"> <br>
+
+
+                        </div>
+                        <div class="box">
+
+                            {{item?.userName}}
+                            <br>
+                            <ion-button color="light" size="small" >
+                               <p style="text-transform: capitalize;">conntect</p> 
+                            </ion-button>
+                            <br>
+                        </div>
+                    </div>
+
+                </ion-segment>
+            </ion-col>
+        </ion-row>
         <ion-row *ngFor="let content of contentList2" style="background-color: white;margin-bottom: 7px;padding: 0%;">
 
             <ion-col class="contentHeader" size="2" (click)="OnUserImage(content.posterReferanceId)"
@@ -34,17 +60,28 @@
                 <img class="profileImage" [src]="content._UserProfileImageUrl" id="{{content.posterReferanceId}}"
                     [alt]="content._Username + ' profile picture'">
             </ion-col>
-            <ion-col class="contentHeader" size="10">
-                <b style="text-transform: capitalize;">
-                    {{content._Username}}
-                </b> <br>
-                {{content._countContentPosterFollowrs}} flollowers{{texts1}}<br>
-            </ion-col>
+            <ion-col class="contentHeader" size="7" style="text-align: left; padding-left: 0%;">
+                <p> <b style="text-transform: capitalize; vertical-align: middle;margin-left: 0; padding-left: 0%;">
+                        {{content._Username}}
+                    </b> <br>
 
+                    {{content._countContentPosterFollowrs}} flollowers{{texts1}}
+                </p>
+            </ion-col>
+            <ion-col class="contentHeader" size="3" style="text-align: center;">
+
+                <ion-button size="small" (click)="followThisContentPoster(content.posterReferanceId)"
+                    id={{content.posterReferanceId+400}} color="light">
+                    <p style="color: gray;">follow</p>
+                </ion-button>
+
+            </ion-col>
             <ion-col class="contentBody" size="12" *ngIf="content.articleOrDescription !=null">
 
-                <p> <b> {{content?.articleHeader}}</b>
-                    {{content?.articleOrDescription}}</p>
+                <p>
+
+                    <b> {{content?.articleHeader}}</b>
+                    {{content?.articleOrDescription}} </p>
             </ion-col>
             <ion-col class="contentBody" size="12" *ngIf="content?._ContentType === 'image'">
                 <img [src]="content._ContentImageURLs[0]">
@@ -56,36 +93,28 @@
             </ion-col>
 
             <ion-row class="eachFooter">
-                <ion-col (click)="likeThisContent(content.contentPostId)" size="3">
+                <ion-col (click)="likeThisContent(content.contentPostId)" size="4">
 
-                    <ion-icon id={{content.contentPostId+100}} size="small"name="thumbs-up-outline"></ion-icon>
+                    <ion-icon id={{content.contentPostId+100}} size="small" name="thumbs-up-outline"></ion-icon>
                     <ion-label id={{content.contentPostId}}> {{ content._countContentLikes}} like</ion-label>
 
 
                 </ion-col>
 
-                <ion-col size="4" (click)="OnComment(content)" routerLink="/comments/{{content.contentPostId}}">
+                <ion-col size="5" (click)="OnComment(content)" routerLink="/comments/{{content.contentPostId}}">
 
                     <ion-icon size="small" name="chatbox-outline"></ion-icon>
 
                     <ion-label>
-                        {{content._countComments}} comm
+                        {{content._countComments}} comment
                     </ion-label>
 
-
                 </ion-col>
-            
-                <ion-col  size="2" (click)="followThisContentPoster(content.posterReferanceId)">
-                    <ion-label id={{content.posterReferanceId+400}}>
-                        follow
-                    </ion-label>
-                  
 
-                </ion-col>
-                <ion-col size="3"  (click)="Share(content.contentPostId)">
+                <ion-col size="3" (click)="Share(content.contentPostId)">
 
                     <ion-icon id={{content.contentPostId+300}} size="medium" name="arrow-redo-outline"></ion-icon>
-share
+                    share
 
                 </ion-col>
             </ion-row>

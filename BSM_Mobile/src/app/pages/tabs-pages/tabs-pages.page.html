@@ -1,5 +1,5 @@
 <ion-tabs>
-
+  
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="home">
       <ion-icon size="small" name="home"></ion-icon>
@@ -7,27 +7,33 @@
     </ion-tab-button>
 
 
+
+
+    <ion-tab-button tab="people">
+      <ion-icon size="small" name="people"></ion-icon>
+      <ion-badge id="peopleBadge" size="small" color="danger">{{countRequestRecive}}</ion-badge>
+      <ion-label>people
+     
+      </ion-label>
+      
+    </ion-tab-button>
     <ion-tab-button routerLink="/post">
       <ion-icon size="small" name="ellipse"></ion-icon>
       <ion-label>post</ion-label>
     </ion-tab-button>
-
-    <ion-tab-button tab="people">
-      <ion-icon size="small" name="people"></ion-icon>
-      <ion-label>people</ion-label>
-    </ion-tab-button>
-    <ion-tab-button routerLink="/notification">
+    <ion-tab-button tab="notification">
       <ion-icon size="small"  name="notifications"></ion-icon>
-      <ion-badge size="small" color="danger">55</ion-badge>
+      <ion-badge id="notificationsBadge" size="small" color="danger">{{countLike}}</ion-badge>
       <ion-label>
         
         notification
       </ion-label>
     </ion-tab-button>
 
-    <ion-tab-button routerLink="/contacts">
-      <ion-icon size="small" name="list"></ion-icon>
-      <ion-label>contacts</ion-label>
+   
+    <ion-tab-button tab="account">
+      <ion-icon size="small" name="person-outline"></ion-icon>
+      <ion-label>account</ion-label>
     </ion-tab-button>
    
   </ion-tab-bar>

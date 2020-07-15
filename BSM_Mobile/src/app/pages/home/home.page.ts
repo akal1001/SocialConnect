@@ -206,15 +206,13 @@ export class HomePage implements OnInit {
     window.localStorage.setItem("_user2", id);
     this._router.navigate(["/publicpro"]);
   }
-
+  
   OnComment(content: IContentPost) {
     window.localStorage.setItem("_cp_Id", content.contentPostId);
     window.localStorage.setItem("_cp_up_img_url", content._UserProfileImageUrl);
     window.localStorage.setItem("_cp_n", content._Username);
-    window.localStorage.setItem(
-      "_cp_followrs",
-      content._countContentPosterFollowrs + "folowers"
-    );
+    window.localStorage.setItem("_cp_followrs",
+      content._countContentPosterFollowrs + "folowers");
     window.localStorage.setItem("_cp_header", content.articleHeader);
     window.localStorage.setItem(
       "_cp_description",
@@ -235,6 +233,8 @@ export class HomePage implements OnInit {
     );
     window.localStorage.setItem("_cp_cpType", content._ContentType);
     window.localStorage.setItem("_cp_comment_count", content._conmentLenght);
+
+    
   }
   OnUserImage(id) {
     console.log(id);

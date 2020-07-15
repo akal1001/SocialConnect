@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { IUser } from '../interfaces/iuser';
+import { FcmService } from './fcm.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AccountService {
 
 
   private _accountBaserUrl = environment.baseUrl + "account/";
-  constructor(private _httpClient: HttpClient) {
+  constructor(private _httpClient: HttpClient, private fcm:FcmService) {
   }
 
   // IsUserAuthenticatedService(userId: string): Observable<boolean> {

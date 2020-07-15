@@ -4,6 +4,7 @@ import { IContentPost } from "src/app/interfaces/icontent-post";
 import { CommentService } from "src/app/services/comment.service";
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { IonInput } from '@ionic/angular';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 @Component({
   selector: "app-comments",
   templateUrl: "./comments.page.html",
@@ -16,7 +17,7 @@ export class CommentsPage implements OnInit {
   public conentImage: string;
   public singleContent: IContentPost;
   public comments: IComment[];
-  constructor(public keyboard: Keyboard,private _commentService: CommentService) {}
+  constructor(public keyboard: Keyboard,private _commentService: CommentService, private nativeLocalStorage:NativeStorage) {}
 
   ngOnInit() {
     this.showKeybord();
@@ -72,26 +73,34 @@ export class CommentsPage implements OnInit {
       })
   };
   PostComment(comment: string) {
-    console.log("comment: " + comment);
-    return this._commentService
-      .PostCommentService(
-        localStorage.getItem("_cp_Id"),
-        window.localStorage.getItem("_user1"),
-        comment
-      )
-      .subscribe(
-        (data) => {
-          console.log();
-          console.log("Post comment : " + data);
-          if(data==true)
-          {
-            this.GetComents();
-          }
-        },
-        (error) => {
-          console.log("Error on posting comment ! " + error);
-        }
-      );
+    this.nativeLocalStorage.getItem("_ucr").then((userData)=>{
+      if(userData != null)
+      {
+        var userId =  userData._userId;
+        console.log(userId)
+        console.log("comment: " + comment);
+        return this._commentService
+          .PostCommentService(
+            localStorage.getItem("_cp_Id"),
+            userId,
+            comment
+          )
+          .subscribe(
+            (data) => {
+              console.log();
+              console.log("Post comment : " + data);
+              if(data==true)
+              {
+                this.GetComents();
+              }
+            },
+            (error) => {
+              console.log("Error on posting comment ! " + error);
+            }
+          );
+      }
+    },error=>{console.log("error on nativelaocaStorage: " + error)})
+   
   }
   likeThisComment(commentId: string) {
     alert("like comment id :" + commentId);

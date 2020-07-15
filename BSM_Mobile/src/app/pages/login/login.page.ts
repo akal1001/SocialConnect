@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { IUser } from "src/app/interfaces/iuser";
 import { NavController } from '@ionic/angular';
 import { NativeStorage } from "@ionic-native/native-storage/ngx";
+import { FcmService } from 'src/app/services/fcm.service';
 
 @Component({
   selector: "app-login",
@@ -23,7 +24,7 @@ export class LoginPage implements OnInit {
 
   constructor(
     private _accountService: AccountService,
-    private _router: Router,public navCtrl: NavController, private nativeStorage: NativeStorage
+    private _router: Router,public navCtrl: NavController, private nativeStorage: NativeStorage, private fcm:FcmService
   ) {}
 
   ngOnInit() {
@@ -56,10 +57,12 @@ export class LoginPage implements OnInit {
                 _username: this.login.username,
                 _userId:data[1],
                 _pI1: data[2]
+              
               })
               .then(
                 () => {
                   console.log("creditional stored to nativeStorage");
+                  //this.TokenRegester(data[1]);
                 },
                 (error) => {
                   console.error("Error nativeStorage !", error);
@@ -80,5 +83,18 @@ export class LoginPage implements OnInit {
   }
   onSignup() {
     this._router.navigateByUrl("/signup")
+  }
+
+
+  //regester or update token for push
+  private TokenRegester(myId:any)
+  {
+    this.fcm.getToken().then(data=>{
+      console.log("Token : " + data +"\n my Id" + myId);
+      //same api to regester 
+
+ alert(data + ".........." + myId);
+    },
+    error=>{console.log("get token error: " + error)})
   }
 }

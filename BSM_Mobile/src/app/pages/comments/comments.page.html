@@ -13,119 +13,128 @@
     </ion-refresher>
     <ion-grid fixed style="background-color:#e8f0f0; padding: 0%;">
         <ion-row style="background-color: white;margin-bottom: 10px;padding: 0%;">
-            <ion-col class="contentHeader"  size="2">
+            <ion-col class="contentHeader" size="2">
 
                 <img class="profileImage" [src]="singleContent?._UserProfileImageUrl">
 
             </ion-col>
-            <ion-col class="contentHeader"  size="10">
-               
-                    <b>
-                        {{singleContent?._Username}}
-                    </b> <br>
-                    {{singleContent?._countContentPosterFollowrs}}
-                
+            <ion-col class="contentHeader" size="10">
+
+                <b>
+                    {{singleContent?._Username}}
+                </b> <br>
+                {{singleContent?._countContentPosterFollowrs}}
+
             </ion-col>
-          
-            <ion-col size="12" size-md="6"  class="contentBody"  size="12" *ngIf="singleContent?.articleOrDescription !='null'">
+
+            <ion-col size="12" size-md="6" class="contentBody" size="12"
+                *ngIf="singleContent?.articleOrDescription !='null'">
 
                 <p> <b> {{singleContent?.articleHeader}}</b> {{singleContent?.articleOrDescription}}</p>
             </ion-col>
-            <ion-col  class="contentBody" size="12" *ngIf="singleContent?._ContentType === 'image'">
+            <ion-col class="contentBody" size="12" *ngIf="singleContent?._ContentType === 'image'">
                 <img class="ContentImage" [src]="singleContent?._ContentImageURLs[0]">
-            
+
             </ion-col>
-            <ion-col  class="contentBody" size="12" *ngIf="singleContent?._ContentType === 'video'">
+            <ion-col class="contentBody" size="12" *ngIf="singleContent?._ContentType === 'video'">
                 <video style="min-height:0;  text-align: center;" controls preload="auto">
                     <source src="{{singleContent._ContentImageURLs[0]}}#t=00:00:01" type="video/mp4">
                 </video>
             </ion-col>
             <ion-row class="eachFooter">
-                <ion-col  size="4">
-               
-                    {{singleContent._countContentLikes}} 
-                
-            </ion-col>
-           
-            <ion-col  size="4">
+                <ion-col size="4">
 
-              
-                   
-             
-            </ion-col>
-            <ion-col  size="4">
-                
-                follow
-        
-        </ion-col>
+                    {{singleContent._countContentLikes}}
+
+                </ion-col>
+
+                <ion-col size="4">
+
+
+
+
+                </ion-col>
+                <ion-col size="4">
+
+                    follow
+
+                </ion-col>
             </ion-row>
             <br>
             <br>
-            <ion-row  *ngFor="let com of comments" style="width: 100%;">
-                <ion-col size="2" class="commenterColumen" >
+            <ion-row *ngFor="let com of comments" style="width: 100%;">
+                <ion-col size="2" class="commenterColumen">
                     <img class="profileImageCommenter" [src]="com?._commenterProfileImageURL">
                 </ion-col>
                 <ion-col size="10">
                     <p>
                         {{com?._Comment}}
-                    </p>
-                   
-                </ion-col>
-            
-             
-            </ion-row>   
-            <ion-row>
-                <ion-col class="commenterColumen" size="2">
-                    <img class="profileImageCommenter" [src]="singleContent?._ContentImageURLs">
-                </ion-col>
-                <ion-col size="10">
-                    <p>
-                        ative: tried calling StatusBar.styleDefault,
-                        but Cordova is not
-                        available. Make sure to include cordova.js or run in a device/simulato
-                    </p>
-                  
-                    <ion-row>
-                        <ion-col size="6">
 
-    344 like
+                    </p>
+                    <ion-row>
+                        <ion-col size="4">
+
+                            344 like
 
                         </ion-col>
-                        <ion-col size="6">
-                            <a>
-                                retplay
+                        <ion-col size="4">
+                            <a (click)="OnForReplay(com.commentId)">
+                                replay
                             </a>
+
+                        </ion-col>
+                        <ion-col size="4">
+                            <a (click)="OnShowReplay(com.commentId+1)">
+                                4 replays
+                            </a>
+
                         </ion-col>
                     </ion-row>
                     <ion-row>
-                        <ion-col size="2">
-                            <img class="profileImageCommenter" [src]="singleContent?._ContentImageURLs">
+                        <ion-row id={{com.commentId}}
+                            style="height: 100px; width: 100%;display: none;border: 1px solid lightgray;">
+                            <!-- {{com.commentId}} -->
+                            <ion-textarea #myreplay style="border-bottom: 1px solid lightgray;height: 70PX;">
+                            </ion-textarea>
+                            <button style="float: right;"
+                                (click)="OnReplay(com.commentId, myreplay.value)">post</button>
+                        </ion-row>
+                        <ion-col size="12" id={{com.commentId+1}} style="display: none;">
+                            <ion-row *ngFor="let rep of com._replay" style="padding: 0%;">
+                                <ion-col size="2">
+                                    <img class="profileImageCommenter" [src]="rep._user.profileImageURL">
+                                </ion-col>
+                                <ion-col id="2" size="10">
+                                    <p>
+                                        {{rep.replayContent}}
+                                    </p>
+                                </ion-col>
+                            </ion-row>
                         </ion-col>
-                        <ion-col id="2" size="10">
-                            <p>
-                                ative: tried calling StatusBar.styleDefault,
-                                but Cordova is not
-                                available. Make sure to include cordova.js or run in a device/simulato
-                            </p>
-                        </ion-col>
+
+
                     </ion-row>
-                    
                 </ion-col>
+
+
             </ion-row>
-            </ion-row>
+
+        </ion-row>
     </ion-grid>
 
 </ion-content>
 <ion-row>
-   
-    <ion-col size="12"  style="padding: 0%;border-top: 1px solid lightgray; margin: 0%;  background-color: #f0f5f5;">
-       
-        <ion-textarea #myComment placeholder="Write your comment here.." style=" padding: 3%;padding-top: 1%; background-color: #f0f5f5; width: 80%; float: left;"></ion-textarea>
-        <button color="success" (click)="PostComment(myComment.value)" style="float: right; background-color: #00cc66; font-weight: bold; color: white; width: 20%; min-height: 100%;">
+
+    <ion-col size="12" style="padding: 0%;border-top: 1px solid lightgray; margin: 0%;  background-color: #f0f5f5;">
+
+        <ion-textarea #myComment placeholder="Write your comment here.."
+            style=" padding: 3%;padding-top: 1%; background-color: #f0f5f5; width: 80%; float: left;"></ion-textarea>
+        <button color="success" (click)="PostComment(myComment.value)"
+            style="float: right; background-color: #00cc66; font-weight: bold; color: white; width: 20%; min-height: 100%;">
             push
-         </button>
-         
-       
+        </button>
+
+
     </ion-col>
-   
+
 </ion-row>

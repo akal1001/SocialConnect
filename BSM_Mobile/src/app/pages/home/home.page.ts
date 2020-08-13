@@ -145,8 +145,13 @@ export class HomePage implements OnInit {
      this._contentPost.ReturnAllContentService().subscribe(
       (data) => {
         
+       
         document.getElementById("mysponer").style.display="none";
         this.contentList2 = data;
+        for(var i = 0; i < this.contentList2.length; i ++ )
+        {
+           console.log(this.contentList2[i].contentPostId)
+        }
       },
       (error) => {
         console.log(error);

@@ -1,6 +1,7 @@
 import { IReplay } from './ireplay';
 
 export interface IComment {
+    commentId:any;
     likeDislikeCommentId?: any;
     referanceId?: any;
     commenterId?: any;

@@ -40,9 +40,6 @@ export class CommentsPage implements OnInit {
       event.target.complete()
     }, 2000)
   }
-
-
-
   OnUserImage(id) {
     console.log(id);
     window.localStorage.setItem("_user2", id)
@@ -105,9 +102,11 @@ export class CommentsPage implements OnInit {
   likeThisComment(commentId: string) {
     alert("like comment id :" + commentId);
   }
-  postReplay(replayerId: string, commentId: string, comment: string) {
-    return this._commentService
-      .PostReplayForCommentServce(replayerId, commentId, comment)
+  OnReplay(commentId: string, comment: string) {
+  
+    this.nativeLocalStorage.getItem("_ucr").then((value)=>{
+      return this._commentService
+      .PostReplayForCommentServce(value._userId, commentId, comment)
       .subscribe(
         (data) => {
           console.log("Post repaly : " + data);
@@ -116,5 +115,31 @@ export class CommentsPage implements OnInit {
           console.log("Error  on post replay: " + error);
         }
       )
+    },error=>{
+      console.log("error getting data from navtiveLocalStorage : " + error)
+    })
+    
   };
+  //show div 
+  OnForReplay(id)
+  {
+    var x = document.getElementById(id);
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+  OnShowReplay(id)
+  {
+    //this.GetReplaysByCommentId(id);
+    var x = document.getElementById(id);
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+ 
+
 }

@@ -3,6 +3,8 @@ import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { Router } from '@angular/router';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { AccountService } from 'src/app/services/account.service';
+import { IUser } from 'src/app/interfaces/iuser';
 
 @Component({
   selector: 'app-account',
@@ -13,7 +15,8 @@ export class AccountPage implements OnInit {
   myName:string="";
   myId:string = "";
   profileImageUrl:string = "";
-  constructor( private _router:Router, private menu: MenuController, private nativeStorage: NativeStorage
+  users:IUser;
+  constructor(private _account:AccountService, private _router:Router, private menu: MenuController, private nativeStorage: NativeStorage
  ) { }
 
   ngOnInit() {
@@ -29,7 +32,7 @@ export class AccountPage implements OnInit {
       }
     );
     console.log("aaa")
-  
+    this.getAllUser();
   }
   logout()
   {
@@ -56,5 +59,15 @@ export class AccountPage implements OnInit {
         console.log("error geting data from nativeStorage" + error);
       }
     );
+  }
+
+  getAllUser() {
+    this.nativeStorage.getItem("_ucr").then((data: { _userId: string; })=>{
+      return this._account.ReturnAllUsers(data._userId).subscribe((data: IUser) => {
+        this.users = data;
+       
+      });
+    },error=>console.log("erro native native localStorage" + error))
+    
   }
 }

@@ -7,7 +7,43 @@
     margin-left: 25%;
    
 }
-ion-item{
+list-item{
  //border: 1px solid red;
  
+ --lines:"none"
 }
+ion-label{
+    text-transform: capitalize;
+   text-align: justify;
+}
+.wraper{
+ 
+    padding: 0%;
+    margin: 0%;
+    margin: 1px;
+   
+    
+    width: 100%;
+    //background-color: lightgray;
+    
+  }
+.profileImage2{
+     height: 80px; width: 80px; border-radius: 50%;;
+
+}
+.box{
+    width: 90px;
+    background-color: white;
+    text-align: center;
+    padding-left: 0%;
+    padding-right: 0%;
+    margin: 0%;
+   
+    border-top-right-radius:1%;
+    border-top-left-radius:1%;
+  
+    text-transform: capitalize;
+    
+    //font-style: italic;
+    
+  }
